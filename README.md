@@ -3,7 +3,7 @@
 I started learning to code in November 2021. 
 I self-studied for a few months @CodeWithMosh. 
 I self-studied for a year with @ITCareerSwitch. 
-I landed a job at <REDACTED> in 03/2023.
+I landed a job at REDACTED in 03/2023.
     
 Its now 06/2023 and quite frankly I've silently struggled a hecking lot in this time.
 Its taken me about 18 months of programming to realise that I'm an absolute novice.  
