@@ -1,0 +1,29 @@
+Code Execution Model 
+
+    Compiled 
+        Source Code  >> Complier >> Machine Code >> CPU 
+
+    Dynamic (REPL)
+        Source Code >> Interpreter >> Compiler >> Machine Code >> CPU 
+
+    Managed 
+        Source Code >> Compiled Binary (Assembly .dll/.exe) >> Just In Time Execution Engine >> Machine Code >> CPU 
+____________________________
+
+Common Language Runtime (CLR)
+
+    .NET 
+    .NET Core           (Cross Platform)
+    .NET Framework  
+
+____________________________
+
+Base Class Libraries (BCL)
+
+    Arrays 
+    JSON 
+    etc 
+
+____________________________
+
+Learned some High level terms 

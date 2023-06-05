@@ -1,0 +1,12 @@
+C#
+    Smashed C++ and Java together 
+
+    Strongly Typed  
+
+    Safe - Compiler throws error 
+
+    Object Oriented - System.Object
+
+____________________________
+
+Absolutely nothing new here. 

@@ -1,0 +1,39 @@
+"The only constant is change" 
+
+_____________
+
+Disposable Types; 
+
+
+Exception-safe usage of Disposable Resources 
+    try/catch/finally  >> IDisposable 
+
+>   public interface IDisposable
+    {
+        void Dispose()
+    }
+
+>   class Widget: IDisposable
+    {
+        public void DoSomething()
+        {
+            //
+        }
+
+        public void Dispose()
+        {
+            //
+        }
+    }
+
+>  using (var x = new Widget())
+    {
+        x.DoSomething();
+    }
+
+
+IDisposable automatically uses try/finally to dispose of class
+    Because the use & existance of the Class is only within the { } 
+_____________
+
+
