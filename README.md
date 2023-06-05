@@ -10,7 +10,7 @@ Its taken me about 18 months of programming to realise that I'm an absolute novi
   
 However, I'm survivng on the quote "A diamond is a chunk of coal that is made good under pressure.".
 
-I've set out 4 Growth objectives for myself;
+I've set out 4 Growth objectives for myself; \n
   Git gud 
   Understand the code base
   Learn how to ask for help
