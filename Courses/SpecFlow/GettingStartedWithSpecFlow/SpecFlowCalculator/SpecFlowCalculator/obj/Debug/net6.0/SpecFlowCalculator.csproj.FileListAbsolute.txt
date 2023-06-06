@@ -1,0 +1,12 @@
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\bin\Debug\net6.0\SpecFlowCalculator.deps.json
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\bin\Debug\net6.0\SpecFlowCalculator.dll
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\bin\Debug\net6.0\SpecFlowCalculator.pdb
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.csproj.AssemblyReference.cache
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.AssemblyInfoInputs.cache
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.AssemblyInfo.cs
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.csproj.CoreCompileInputs.cache
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.dll
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\refint\SpecFlowCalculator.dll
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.pdb
+C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator\SpecFlowCalculator\obj\Debug\net6.0\ref\SpecFlowCalculator.dll
