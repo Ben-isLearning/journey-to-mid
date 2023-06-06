@@ -1,0 +1,38 @@
+Behaviour Driven Development creates a shared understanding of how an application should behave 
+by discovering missing requirements, based on concrete examples. 
+
+
+BDD Phases 
+    Discover  (Specification by example workshop)
+        Specify collaboratively with examples 
+        >Overcome bindspots of unknown unknowns  
+
+    Formulate 
+        Write Gherkin test cases in natural language
+        >Turning key examples into formalized gherkin examples
+
+    Automate 
+        Avoid regression by automating test cases 
+        >Scenarios are turned into automated acceptance tests
+
+
+    Discover 
+        ~What do we need? 
+
+    Formulate
+        Scenario: Simple search 
+
+        When I search for '.NET BDD framework'
+        Then the list of found results should contain :SpecFlow
+
+    Automate (just the when)
+        [When(@"I search for '(.*)'")]
+        public void WhenISearchFor(string searchTerm) 
+        {
+            var controller = new CatalogController();
+            actionResult - controller.search(searchTerm);
+        }
+
+___________________________________________
+
+
