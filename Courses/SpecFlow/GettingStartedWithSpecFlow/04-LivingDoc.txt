@@ -1,0 +1,25 @@
+How to generate LivingDocs 
+
+    Using Gherkin feature specifcation & 
+    automation annotation results as a single source of truth. 
+
+    ships testing results results of code 
+    into an easily digestable format to other teams. 
+
+Do it via CMD 
+    Install LivingDoc Generator 
+        dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI 
+
+    CMD > Navigate to where out compiled test assemblies live 
+        cd C:\journey-to-mid\Courses\SpecFlow\GettingStartedWithSpecFlow\SpecFlowCalculator.Specs\bin\Debug\net6.0
+
+    CMD > Execute 
+        livingdoc test-assembly .\SpecFlowCalculator.Specs.dll -t .\TestExecution.json 
+
+    Success? 
+        LivingDoc.html should be generated in our folder specified earlier. 
+
+    Our tests, and their results are now in a nice, pretty, easily digestable format 
+    for all teams and stakeholders to view & consume. 
+
+    
