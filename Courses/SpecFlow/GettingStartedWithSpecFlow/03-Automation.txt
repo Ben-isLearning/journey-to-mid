@@ -1,0 +1,12 @@
+Given
+When 
+Then
+
+Very similar to 
+
+Arrange 
+Act 
+Assert 
+
+____________________
+

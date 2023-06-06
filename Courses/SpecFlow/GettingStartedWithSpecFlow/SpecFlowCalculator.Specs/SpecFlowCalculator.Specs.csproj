@@ -20,4 +20,8 @@
     <Folder Include="Support\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpecFlowCalculator\SpecFlowCalculator\SpecFlowCalculator.csproj" />
+  </ItemGroup>
+
 </Project>
