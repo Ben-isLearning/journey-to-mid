@@ -1,0 +1,221 @@
+What is BDD? (and how SpecFlow relates to it?)
+
+    Behavior Driven Development; 
+        BDD Scenario: bridge between requirements and the solution
+        
+            Req: The AC Requirement
+                VV Make requirements testable 
+
+            Scenario: User votes up a question
+            Given a question asked with 2 votes 
+            And the user is authenticated 
+            When the user votes up the question
+            Then the votes should be changed to 3
+
+            App: The Functionality in the App 
+                ^^ Make tests understandable    (Why is this test failing? Is it still required/relevant?)
+
+
+    Gherkin Syntax: 
+        Scenario ~      Title ~ identifies the Scenario ("the one where..." ~ Imagine a scenario "the one where X happens" ~ drop "the one where" hey presto, a title. )
+        Given ~         Describes Context               (Arrange)
+        And ~           Coninuation on Previous step    
+        When ~          Acton that indicates behavior   (Act)
+        Then ~          the expected outcome            (Assert)
+
+
+    SpecFlow is a BDD framework for .NET ~ The official .NET Version of Cucumber. 
+        Executes scenarios using the provided automation code. 
+            Execution is done with help of execution frameworks (Xunit, etc)
+            Automation is provided for the step (focus on Reusability)
+
+
+    Behavior Driven Development
+        is about understanding, documenting & verifying buisness requirenements 
+        through ilistrative scenarios 
+
+
+    Purpose of Scenarios:  
+        A Scenario is...
+            An illustration of the requirements         
+            an automated test 
+            a documentation of the behaviour    
+
+            Implementation Phase 
+                >Ilustration 
+                >Automated testing 
+
+            Maintenence Phase 
+                >Automated Testing (once passed)
+                >Documentation of behaviour (Finely tuned)
+        
+
+    Why do we need a Bridge between Requirements and Application? 
+        Traditionally connecting Automated tests with the AC of the stories
+        is incredbly difficuly. 
+
+        The bridge provides;
+            A Scenario to cover the AC 
+            A Step Definition to define the automation code 
+            The Scenario verifies the Production code 
+
+        Discovery is turning an Acceptance Criteria into an Example 
+        Formulation is turning an AC into a GivenWhenThen Scenario 
+
+        The bridge validates the AC && Verifies the production code 
+            
+
+    Practices of BDD
+
+        Discovery; 
+            Shared understanding is establised through collaboration and structured conversations. 
+            >Defining examples 
+            >Gain better understanding of AC through illustrating Examples 
+
+        Formulation:
+            The examples of system behaviour are documented as scenarios 
+            >Mould examples into GivenWhenThen based scenarios 
+
+        Automation: 
+            Scenarios are automated to be able to verify the behavior of the system
+______________________________________
+The BDD Process (Through an example)
+
+    01- Pick a User Story   ~ Product Owner 
+        Elicit and prioritize functionality 
+        (What are we trying to achieve?)
+
+            Story
+            "In order to avoid posting duplicate questions as a user, 
+            i want to get suggestions about similar questions i am about to ask"
+            
+            Background
+            This is a feature we needed for long because there are too many duplicates 
+            With this story we would like to have an initial simple version that we can refine later based on the feedback 
+
+            Concept 
+            Identify the related questions based on the same words used 
+
+
+    02- Requirement Workshop ~ Whole Team 
+        Explore and discover through examples 
+        (Sprint Planning)
+
+            (Prior to meeting) Product Owner Prepares AC 
+                AC Based on Background, context & goals 
+                if AC is met, job is done. 
+                AC Should be provided, but be prepared for changes
+
+                    AC From Story
+                    AC1 > Questions with at least one common word should be suggested 
+                    AC2 > Words should be matched in title, body and tags 
+                    AC3 > Common English words should be ignored 
+                    AC4 > Suggestions with more common words should be earlier in the list 
+        
+            (Example Mapping) Team goes through AC & Sets out Examples 
+                Story informs AC 
+                each AC, requires Examples of success & examples of failure 
+                Questions arise from anything that isn't clear 
+
+                    AC1 > 
+                    Another question contains the same word;
+                    Question in the system 1)"What is SpecFlow" & 2)"What is Cucumber?"    
+                    User types "Best Specflow practices" 
+                    => suggested 1) 
+
+                    word match is case sensitive; 
+                    Question in the system 1)"What is SpecFlow" 
+                    user types "Best SPECFLOW practices" 
+                    => suggested 1) 
+
+                        Question arises ~ Should we limit the amount of suggestions? 
+                            ~Yes! Great idea ~ Additional AC Added.  
+             
+                        AC5 >
+                        Limit the suggestion list to 10 entries;
+
+                    AC2 > 
+                    The same word is in different fields; 
+                    Question in the system 1)"What is SpecFlow" 2)Q2, Body: "I'm using SpecFlow" 3) Q3, Tags: "SpecFlow"
+                    user types "Best SpecFlow practices" 
+                    => Suggested What is SpecFlow, Q2, Q3 
+
+                    AC3 >
+                    Word "is" is ignored 
+                    Question in the system 1)"What is SpecFlow" & 2)"What is Cucumber?"    
+                    user types "what is the best SpecFlow practice
+                    =? suggested 1) not 2) 
+
+                        Question arrises ~ "How should we deal with words containing dashes like "Behavior-driven"?"
+                            ~Good question - PO doesn't have an answer, needs to ask buisness *Red Sticky Note time*
+
+                    AC4 > 
+                    x
+
+                (Example Splitting) User Story is simply too big, needs to be split! 
+
+                    Can split Story into AC points & Postpone them untill the next sprint 
+
+
+    03- Formulation   ~ Dev & Tester (Creating a single source of truth)
+        Convert example to scenario
+
+        AC1 > 
+            Another question contains the same word;
+            Question in the system 1)"What is SpecFlow" & 2)"What is Cucumber?"    
+            User types "Best Specflow practices" 
+            => suggested 1) 
+
+        Forumation of 1st point in AC1 
+
+            Scenario: Another question contains the same word 
+            Given: there are questions asked as 
+            |title            |
+            |What is SpecFlow?|
+            |What is Cucumber?|
+            And the user is authenticated 
+            When the user starts asking a question as 
+            |title                  |
+            |Best SpecFlow practices|
+            Then the suggestions list should be 
+            |title             |
+            |What is SpecFlow? |
+
+        How to batch? 
+            Should I formulate one? 
+            Should I formulate all four?
+
+            Formulate easy ones first
+            Formulate all user story?
+
+            If two different scenarios look incredibly similar, 
+                They can be made into a Scenario Outline 
+
+        Should be saved as an xxx.feature file, 
+            Which are Source Controlled 
+            Should sit in the same Repo as the production code. 
+
+        How to handle in-progress state? 
+            Newly added scenarios should be accompanied by the @formulated tag (@ignore tag?)
+            which indicates that they are not ready to execute yet. 
+
+
+    04- Review ~ Whole Team 
+        Get feedback on scenarios from buisness 
+        Perhaps in a teams chat asking to look at the pushed Gherkins, 
+        or even scheduel a meeting to discuss
+
+
+    05- Automate ~ Dev & Tester ()
+        Define step definitions 
+        Fill the step definitions with bare bones ~ 
+            The context, the base class, the services we will need, 
+
+    
+    06- Implement ~ Dev ()
+        Reached 1h 20m of Lesson 1 ~ https://specflow.org/school/bdd-masterclass/?lesson=lesson-1
+
+______________________________________
+BDD and Other Test Methods 
+
+
