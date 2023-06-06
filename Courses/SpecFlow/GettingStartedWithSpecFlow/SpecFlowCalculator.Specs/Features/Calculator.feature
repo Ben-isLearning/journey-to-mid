@@ -11,3 +11,9 @@ Scenario: Add two numbers
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
+
+Scenario: Subtract two numbers 
+	Given the first number is 120 
+	And the second number is 50
+	When the second number is subtracted from the first number
+	Then the result should be 70

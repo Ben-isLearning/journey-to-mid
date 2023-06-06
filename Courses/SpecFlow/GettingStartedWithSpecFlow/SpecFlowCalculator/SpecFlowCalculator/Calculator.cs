@@ -7,8 +7,14 @@
 
         public int Add()
         {
-            throw new NotImplementedException();        
+            return FirstNumber + SecondNumber;    
         }
+
+        public int Subtract()
+        { 
+           return FirstNumber - SecondNumber;
+        }
+
 
     }
 }
