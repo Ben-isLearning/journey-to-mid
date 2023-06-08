@@ -1,0 +1,20 @@
+Arrays 
+
+    Syntax ~ Creating a type Array ~ 
+        Always created on the Heap 
+
+        int[]       ~ Array containing multiple int  
+    
+        int[] allEmployeeIds = new int[4];  ~ Array of length 4 
+
+        int[] allEmployeeIds = new int[4] {11, 44, 179, 101};
+        int[] allEmployeeIds = new int[] {101, 123}; 
+_____________________________
+
+Collections ~ List 
+
+    Syntax ~ Creating a generic list 
+
+    List<int> employeeIds = new List<int>();    ~ List will grow and shrink dynamically - it can only contain <int>s 
+
+

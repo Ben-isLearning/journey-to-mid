@@ -1,0 +1,72 @@
+Types; 
+    Reference Types ~ Kept on the Heap 
+
+    object o = new object();    
+
+
+    Value Types     ~ Kept on the Stack 
+    
+    int a = 1; 
+
+    Reference to object o, exists here. 
+    (this is pointer)
+    
+_____________________________
+
+Passing params by reference; 
+    when passing by reference, no copy is made. We change the original. 
+        Need to use ref keyword. 
+
+        int a = 22; 
+        int b = 44; 
+
+        public int AddTwoNumbers(int a, ref int b)
+        {
+            b +=10; 
+            int sum = a + b; 
+            return sum;
+        }
+
+        AddTwoNumbers(a, ref b); 
+
+        (after method is called original b changes)
+        a = 22
+        b = 54
+
+_____________________________
+
+passing params by output; 
+    when passing by output, we can declare & change the original value. 
+        Need to use out keyword. 
+        **out must be declared in the function 
+
+    public static int AddTwoNumbers(int a, out int b, out int c)
+    {
+        b = 10;
+        int sum = a + b;
+        c = sum / 10;
+        return sum;
+    }
+
+_____________________________
+
+    StringBuilder ~ Fantastic object to use for managing strings. 
+
+_____________________________
+
+Types in .NET 
+
+    Classes         Ref
+    Interfaces      Ref
+    Deletages       Ref 
+    Enumerations    Value 
+    Structs         Value 
+
+_____________________________
+
+Base Class Library (BCR)
+    Wow that's alot! 
+
+_____________________________
+
+

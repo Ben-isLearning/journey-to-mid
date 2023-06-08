@@ -1,0 +1,21 @@
+Method Signature
+
+    <access modifier> <return type> Method_Name (params)
+    {
+        // do stuff
+    }
+
+_____________________________
+
+
+Optional Parameters 
+
+    public int addNums (int a, int b, int c = 100)
+    {
+        int sum = a + b + c; 
+        return sum;
+    }
+
+    default value will be used, param is now optional 
+_____________________________
+

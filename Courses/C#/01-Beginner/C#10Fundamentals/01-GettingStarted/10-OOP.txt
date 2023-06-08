@@ -1,0 +1,133 @@
+OOP:
+    Encapsulation
+        private info is hidden 
+        public info is exposed 
+        protected info is exposed to some 
+        avoid data corruption 
+
+    Abstraction
+        hiding hard parts away
+        simple interface represents the complex object 
+
+    Inheritance 
+        Classes can reuse functionality from others
+        Relation between classes 
+        ++Reusability 
+
+    Polymorphism
+        Share behaviours can be in more than one form 
+        child can be used as parent 
+        correct methods still work
+
+_____________________________
+
+Encapsulation ~ 
+    Protect the data inside the classes. 
+        Properties protects
+        fields 
+
+        something class Employee 
+        {
+            public string FirstName {get; set;} 
+            private string firstName; 
+        }
+
+
+_____________________________
+
+Ineritance ~   
+    Parent and child class
+    Parent has base functionalty 
+    Child has parent functionality and specific functionality
+
+    Employee    >   Manager 
+                >   Researcher 
+
+    Code gets more reusable & easier to maintain 
+
+    public class Employee 
+    {
+        protected int id {get; set;}
+    }
+
+    public class Manager: Employee
+    {}
+
+    "Is~A Relation" the Manager Is~A Employee
+    "Has~A Relation" the Employee Has~A id 
+
+_____________________________ 
+
+Polymorphism ~ 
+    Can reuse code! 
+
+    public class Employee 
+    {
+        public void PerformWork()
+    }
+
+    public class Manager: Employee 
+    {}
+
+    Manager can call Employee's PerformWork().
+    
+
+    Manager can also override the PerformWork(), to do something different, but this requires setup. 
+        virtual  |  override 
+    
+    The parent class declares a virtual method, and the child class declares the same method as an override. 
+   
+        public class Employee 
+        {
+            public virual void PerformWork()
+            {
+                //Do stuff 
+            }
+        }
+
+        public class Manager: Employee 
+        {
+            public override void PerformWork()
+            {
+                //Do other stuff 
+            }
+        }
+
+
+        Employee e1 = new Manager(); 
+        >>Everything an employee would need, but It would call override PerformWork()
+        >>And it will fail if manager specific methods are called. 
+
+_____________________________
+
+
+Interfaces in OOP 
+    Its like a contract anything defined in the interface, MUST be defined in the class. 
+
+
+    public interface IEmployee() 
+    {
+        void PerformWork();
+        int ReceiveWage();
+    }    
+
+    internal class Employee: IEmployee
+    {
+        public void PerformWork()
+        {}
+
+        public int ReceiveWage()
+        {}  
+    }
+
+
+    public void Manager: IEmployee
+    {
+        public void PerformWork()
+        {}
+
+        public int ReceiveWage()
+        {}  
+    }
+
+

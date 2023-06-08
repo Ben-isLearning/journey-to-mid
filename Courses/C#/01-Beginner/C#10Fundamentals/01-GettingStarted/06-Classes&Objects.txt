@@ -1,0 +1,11 @@
+Class
+    
+    fields      ~ Class Level Variables ~ 
+    Properties  ~ Exposed versions of fields.
+    Methods 
+    Events 
+
+_____________________________
+
+Gotta remember fields or _fields are the small private things
+whereas Properties are just fields as their Proper exposed selves. 

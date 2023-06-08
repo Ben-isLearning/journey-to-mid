@@ -1,0 +1,10 @@
+Relational Operators 
+    THE BRACKET COMES BEFORE THE = KEY 
+
+    LESS THAN    <=     10 
+    GREATER THAN >=     10
+
+Always mix these up somehow! 
+___________________
+
+

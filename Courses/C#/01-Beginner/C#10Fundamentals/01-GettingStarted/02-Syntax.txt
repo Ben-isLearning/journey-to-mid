@@ -1,0 +1,25 @@
+Gotta remember types first! 
+
+    Type, Name = Value; 
+    int myAge = 101; 
+
+_______________________________
+
+Casting; 
+
+    Implicit Casting    int a = 101; 
+                        long l = a; 
+
+                        Data conversion works because no data will be lost 
+                        int >> long is OK 
+
+
+    Explicit casting    double d = 101.23
+                        int a = (int) d; 
+
+                        I know C# will complain, but i really want this to be an (int)
+
+_______________________________
+
+
+

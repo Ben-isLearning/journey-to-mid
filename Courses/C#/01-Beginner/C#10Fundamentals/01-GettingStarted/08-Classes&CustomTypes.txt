@@ -1,0 +1,17 @@
+nullable
+
+    public Employee(string firstName, string lastName, int? age)
+
+    This age to be int AND null. 
+
+_____________________________
+
+null coalescing
+    specify that if this value is null, set it to something else. 
+    little like a turnary operator
+        [what is value ? rate : 10;]
+
+    hourlyRate = rate ?? 10;   
+
+_____________________________
+

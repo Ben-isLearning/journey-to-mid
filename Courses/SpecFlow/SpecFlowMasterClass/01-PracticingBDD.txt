@@ -158,7 +158,8 @@ The BDD Process (Through an example)
 
 
     03- Formulation   ~ Dev & Tester (Creating a single source of truth)
-        Convert example to scenario
+        1 AC >> Many Examples
+        Convert examples to GivenWhenThen Scenarios
 
         AC1 > 
             Another question contains the same word;
