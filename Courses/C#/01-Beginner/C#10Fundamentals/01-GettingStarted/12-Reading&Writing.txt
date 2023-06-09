@@ -1,0 +1,59 @@
+Working with
+
+    System.IO 
+        File, Directory and Path classes
+        FileInfo and DirectoryInfo 
+
+
+Saving user Input 
+    internal static void SaveEmployees(List<Employee> employees)
+    {
+        string path = $"{directory}{fileName}";
+        StringBuilder sb = new StringBuilder();
+        foreach (Employee employee in employees)
+        {
+            sb.Append($"firstName:{employee.FirstName};");
+            sb.Append($"lastName:{employee.LastName};");
+            sb.Append($"type:{employee.employeeType}")
+
+            sb.Append(Environment.NewLine);
+        }
+        File.WriteAllText(path, sb.ToString);
+
+        Console.WriteLine("Saved employees successfully");
+    }
+
+Storing
+    thisFile.txt 
+        firstName:Ben;lastName:Win;
+
+Parsing from storage
+    internal static void LoadEmploees(List<Employee> employees)
+    {
+        string path = $"{directory}{fileName}";
+        if (File.Exists(path))
+        {
+            employees.Clear(); 
+
+            string[] employeesAsString = File.ReadAllLines(path);
+            for (int i = 0; i < employeesAsString.Length; i++)
+            {
+                string[] employeeSplits = employeesAsString[i].Split(';');
+                string firstName = employeeSplits[0].Substring(employeeSplits[0].indexOf(':') + 1); 
+                string lastName = employeeSplits[1].Substring(employeeSplits[1].indexOf(':') + 1); 
+                string employeeType = employeeSplits[2].Substring(employeeSplits[2].indexOf(':') + 1); 
+                
+                Employee employee = null; 
+
+                switch (employeeType)
+                {
+                    case "1": 
+                        employee = new Employee(firstName, lastName);
+                        break;
+                    //Other cases
+                }
+
+                employees.Add(employee)
+            }
+        }
+    }
