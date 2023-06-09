@@ -1,0 +1,52 @@
+Exceptions are just Errors ~ They will happen. 
+
+    Default behavior ~ forbidden function will occur
+        ex; a = 10 / 0
+        Cannot divide by 0 ~ System.DivideByZeroException is thrown.
+
+______________________
+
+C# catches these errors with try,catch,finally.
+
+    try 
+    {
+        //do something that might cause an error 
+        // 10 / 0' 
+    }
+    catch (FormatException ex)
+    {
+        //handle here 
+        // Console.WriteLine(ex.Message);
+        // Console.StackTrack(ex.StackTrace);
+    }
+    catch (DivideByZeroException dbzex)
+    {
+        //handle here 
+        //Different type of exception 
+        //Provides the user something meaningful 
+    }
+    catch (Exception ex)
+    {
+        //handle here 
+        //Exception is the base class of all Exceptions
+        //Can be used to catch all remaining errors here 
+    }
+    finally
+    {
+        //Code here always executes
+        //Any cleanup code goes here 
+    }
+
+______________________
+
+Exception Heirachy 
+
+    SystemException
+        FormatException
+        ArithmeticException
+            DivideByZeroException
+            ...
+    ApplicationException
+    ...
+
+    Can create 
