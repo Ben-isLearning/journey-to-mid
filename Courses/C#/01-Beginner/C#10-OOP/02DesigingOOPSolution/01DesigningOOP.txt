@@ -1,0 +1,94 @@
+Gathering Requirements; 
+
+    What is the Business Case? 
+        "I need an application for the management of our inventory of ingredients, 
+        so that we can continue baking our pies!" 
+
+    Usually done by a Business Analyist. 
+    
+    Conversation between business owner & Buisness Analyst  
+    
+        What should it be named? 
+        ~~ "Bethany's Pie Shop Inventory Management" 
+        
+        Who will be using it? 
+        ~~ "used by inventory managers in the warehouse" 
+
+        How do inventory manager work with the inventory? 
+        ~~ "When a product is used, inventory needs to be updated to reflect the new situation" 
+        ~~ "Some products are used per item, others are used per kilo, others per box"
+        ~~ "We need to be able to see which products are low on stock, so we dont run out!" 
+
+        ~~ "and it would be great if inventory managers can create new orders for one or more products" 
+        ~~ "most of our products are purchased in USD, but others are in Euro, and some in GPB" 
+        ~~ "We need to make sure not to order too many of a product, since we have a limited storage capacity" 
+
+        ~~ "I may not have mentioned it; our inventory managers will also need to be able to add new products" (entirely new product, not extra stock)
+
+
+    From this we understand that the app needs to...
+        Work with Products 
+        Produce exists in different unit types 
+        Create Orders to increase stock of one or more 
+        Products can have a Price in different Currencies 
+        Add new Product 
+
+    We need to model these entities...
+        Products 
+        unit Types 
+        Orders 
+        Price, Currencies
+
+
+    **REQUIREMENTS WILL CHANGE!!!**
+        OOP will make it easy to handle changes 
+_______________________________
+
+Identifying Classes and Functionalities; 
+
+    Entities: 
+        Product 
+        Order & OrderItem 
+        Price 
+        Currency 
+        UnitType 
+
+        Product:
+            Id
+            Name
+            Description
+            Maximum in stock 
+            Price & currency 
+            Unit Type 
+            Current amount in Stock 
+            Low on Stock? 
+
+            Use() 
+            AddNewProduct()
+            AlertIfLowOnStock()
+            DisplayDetailsOfProduct(short)
+            DisplayDetailsOfProduct(long)
+            IncreaseStock()
+
+        Order: 
+            Id 
+            List of Order Items
+            Fulfilled
+            Filfillment date 
+
+            ShowDetailsOfOrderAndOrderedLines()
+
+        Price: 
+            Item Price 
+            Currency 
+        
+        Currency ~ Enum 
+            USD
+            GPB 
+            EUR 
+
+        Unit Type ~ Enum 
+            Unit 
+            Kilo 
+            Box 
+
