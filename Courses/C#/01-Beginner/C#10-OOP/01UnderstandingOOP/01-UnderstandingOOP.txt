@@ -1,0 +1,131 @@
+OOP / Object-Oriented Programing 
+
+    Everything is an Object ~ Everything! 
+    Helps with breaking down the problem into smaller parts 
+
+______________________________
+
+Objects; 
+
+    Classes     - Blueprints                  
+    Objects     - Based on Classes         
+    Methods     - Provide Functionality 
+    Properties  - To Work with Data 
+    Interfaces  - Contracts in code 
+
+______________________________
+
+Classes ~ How we categorise concepts IRL  (Reference Types )
+    Are concepts of the real world 
+    Used to caterogise "types" 
+
+    Classes are a blueprint for Objects
+    Defines data and functionality to work on its data 
+
+        public class Employee
+        {
+            public Employee ()
+            {
+                //Initialization code goes here 
+            }
+
+            private string firstName;
+            private int age; 
+
+            public string FirstName {get; set;}
+            public int Age {get; set;}
+
+            public void PerformWork()
+            {
+                //DoSomething
+            }
+        }
+ 
+        Components of a class; 
+        fields      ~ internal data 
+        Properties  ~ publicly accessible data 
+        Methods     ~ publicly accessible functionality 
+        Events      ~ 
+        Constructors~ publicly invoked by the new keyword 
+        Constants   ~
+        
+        Members     ~ Classes contain members. Members is a group name for anything inside a class.
+
+______________________________
+     
+Objects ~ a single instance of the Class blueprint;
+    a Class is the blueprint 
+    the Object is an instance of the blueprint. 
+
+        Employee employee = new Employee();
+
+    Anything Property in the Employee class with a setter can be overwritten~ 
+
+        employee.FirstName = "Harold"; 
+        employee.Age = 18; 
+        employee.PerformWork(); 
+
+______________________________
+
+Types in the CTS 
+
+    Class
+    Enumeration (Enums ~ Value Types)
+    Struct      (Value Types)
+    Interfaces  (Abstract)
+    Delegate    (Not Yet)
+    Record      (Treated as Classes)
+
+______________________________
+
+Object-Oriented Design 
+    4 Pillars of OOP 
+
+    Abstraction 
+        think about the essential concepts 
+        Create layer of abstraction. 
+        expose simple handles to interact with, without knowing details 
+        focus on what it does, not how it does it 
+
+        Car Example; 
+            Steering wheel, brake pedal
+                >This is abstraction 
+            No need to understand how the engine and the breaks really work. 
+                >Only necessary aspects are exposed 
+        
+        Employee Example; 
+            Name, Age, Address, Perform Work 
+                >Only Name and Perform work are essential 
+                >Thats our public interface, the rest can be internal. 
+
+    Encapsulation 
+        All data and functionality on this data is encapsulated inside an object 
+        Only certain information is exposed 
+        Data is hidden inside object 
+
+        Car example; 
+            defines speed, engine, drive(), speedUp()
+                >All bound up in one unit 
+            Engine data must be hidden (private)
+                >User cant throw petrol directly into the engine, gotta go in the gas tank 
+            speedUp() can be working on data, but still be publicly available 
+                >Internal data changed by external method.
+
+    Inheritance 
+        Classes inherit features from other classes 
+        Create heirachy from generic to specific 
+            >Is-A relation
+        Child will extend functionality and attributes 
+        
+        Car example; 
+            class Car 
+            class MiniVan: Car 
+            class SportsCar: Car 
+            class ElectricCar: Car 
+
+    Polymorphism 
+        Allow methods to execute differently 
+            > Car.drive() is different to SportsCar.drive()
+        Acheived with virtual & override keywords 
+
+______________________________
