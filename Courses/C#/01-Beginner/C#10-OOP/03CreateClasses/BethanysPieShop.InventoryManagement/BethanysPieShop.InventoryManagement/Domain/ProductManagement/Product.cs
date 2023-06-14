@@ -43,6 +43,15 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 
         public UnitType UnitType { get; set; }
         public int AmountInStock { get; private set; }
+
+        public static int StockThreshold = 5;
+        public static void ChangeStockThreshold(int newStockThreshold)
+        {
+            if (newStockThreshold > 0)
+            {
+                StockThreshold = newStockThreshold;
+            }
+        }
         public bool IsBelowStockThreshold { get; private set; }
         public Price Price { get; set; }
 
@@ -61,7 +70,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             Id = id;
             Name = name;
             Description = description;
-            Price = price; 
+            Price = price;
             UnitType = unitType;
 
             maxItemsInStock = maxAmountInStock;
@@ -106,7 +115,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
                 Log($"{CreateSimpleProductRepresentation} stock overflow! {newStock - AmountInStock} items(s) ordered that couldn't be stored.");
             }
 
-            if (AmountInStock > 10)
+            if (AmountInStock > StockThreshold)
             {
                 IsBelowStockThreshold = false;
             }

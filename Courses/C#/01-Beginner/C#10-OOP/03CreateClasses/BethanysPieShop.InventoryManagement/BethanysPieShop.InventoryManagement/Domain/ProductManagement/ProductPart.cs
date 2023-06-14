@@ -9,9 +9,9 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 {
     public partial class Product
     {
-        private void UpdateLowStock()
+        public void UpdateLowStock()
         {
-            if (AmountInStock < 10)//for now a fixed value
+            if (AmountInStock < StockThreshold)
             {
                 IsBelowStockThreshold = true;
             }
