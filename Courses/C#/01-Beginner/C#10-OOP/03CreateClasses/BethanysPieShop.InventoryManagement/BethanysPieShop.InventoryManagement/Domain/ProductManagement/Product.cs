@@ -152,7 +152,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
         public string DisplayDetailsFull(string extraDetails)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{id} {name} \n{description}\n{Price}\n{AmountInStock} item(s) in stock");
+            sb.Append($"{Id} {Name} \n{Description}\n{Price}\n{AmountInStock} item(s) in stock");
             sb.Append(extraDetails);
             if (IsBelowStockThreshold)
             {

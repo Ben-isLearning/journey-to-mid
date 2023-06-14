@@ -12,6 +12,11 @@ namespace BethanysPieShop.InventoryManagement
 
         internal static void InitializeStock()//Mock implementation
         {
+            BoxedProduct boxedProduct = new BoxedProduct(
+                6, "Eggs", "Lorem ipsum", new Price() { ItemPrice = 10, Currency = Currency.Euro }, 100, 6);
+
+
+
             ProductRepository productRepository = new();
             inventory = productRepository.LoadProductsFromFile();
 
