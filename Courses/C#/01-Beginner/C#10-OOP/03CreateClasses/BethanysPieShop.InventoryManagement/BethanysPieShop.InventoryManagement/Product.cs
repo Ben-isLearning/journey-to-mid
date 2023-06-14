@@ -42,6 +42,28 @@ namespace BethanysPieShop.InventoryManagement
         public UnitType UnitType { get; set; }
         public int AmountInStock { get; private set; }
         public bool IsBelowStockThreshold { get; private set; }
+        public Product(int id) : this(id, string.Empty)
+        {
+        }
+
+        public Product(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public Product(int id, string name, string? description, UnitType unitType, int maxAmountInStock)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            UnitType = unitType;
+
+            maxItemsInStock = maxAmountInStock;
+
+            UpdateLowStock()
+
+        }
 
         public void UseProduct(int items)
         {
@@ -64,6 +86,27 @@ namespace BethanysPieShop.InventoryManagement
         {
             AmountInStock++;
         }
+
+        public void IncreaseStock(int amount)
+        {
+            int newStock = AmountInStock + amount;
+
+            if (newStock <= maxItemsInStock)
+            {
+                AmountInStock += amount;
+            }
+            else
+            {
+                AmountInStock = maxItemsInStock; // Only store possible items ~ Overstock isn't stored 
+                Log($"{CreateSimpleProductRepresentation} stock overflow! {newStock - AmountInStock} items(s) ordered that couldn't be stored.");
+            }
+
+            if (AmountInStock > 10)
+            {
+                IsBelowStockThreshold = false;
+            }
+        }
+
 
         private void DecreaseStock(int items, string reason)
         {
@@ -89,17 +132,19 @@ namespace BethanysPieShop.InventoryManagement
 
         public string DisplayDetailsFull()
         {
-            StringBuilder sb = new();
-            //ToDo: add price here too
-            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
+            return DisplayDetailsFull("");
+        }
 
+        public string DisplayDetailsFull(string extraDetails)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
+            sb.Append(extraDetails);
             if (IsBelowStockThreshold)
             {
                 sb.Append("\n!!STOCK LOW!!");
             }
-
             return sb.ToString();
-
         }
 
         private void UpdateLowStock()
