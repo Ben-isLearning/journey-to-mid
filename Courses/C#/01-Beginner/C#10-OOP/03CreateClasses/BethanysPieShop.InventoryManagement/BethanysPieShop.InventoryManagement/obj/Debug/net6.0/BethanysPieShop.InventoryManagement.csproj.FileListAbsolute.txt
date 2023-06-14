@@ -1,0 +1,15 @@
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\bin\Debug\net6.0\BethanysPieShop.InventoryManagement.exe
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\bin\Debug\net6.0\BethanysPieShop.InventoryManagement.deps.json
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\bin\Debug\net6.0\BethanysPieShop.InventoryManagement.runtimeconfig.json
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\bin\Debug\net6.0\BethanysPieShop.InventoryManagement.dll
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\bin\Debug\net6.0\BethanysPieShop.InventoryManagement.pdb
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.csproj.AssemblyReference.cache
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.AssemblyInfoInputs.cache
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.AssemblyInfo.cs
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.csproj.CoreCompileInputs.cache
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.dll
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\refint\BethanysPieShop.InventoryManagement.dll
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.pdb
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\BethanysPieShop.InventoryManagement.genruntimeconfig.cache
+C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\BethanysPieShop.InventoryManagement\BethanysPieShop.InventoryManagement\obj\Debug\net6.0\ref\BethanysPieShop.InventoryManagement.dll
