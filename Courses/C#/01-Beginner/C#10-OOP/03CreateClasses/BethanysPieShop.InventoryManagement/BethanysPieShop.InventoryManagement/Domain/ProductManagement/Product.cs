@@ -1,16 +1,18 @@
-﻿using System;
+﻿using BethanysPieShop.InventoryManagement.Domain.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BethanysPieShop.InventoryManagement
+namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 {
-    public class Product
+    public partial class Product
     {
         private int id;
         private string name = string.Empty;
         private string? description;
+
         private int maxItemsInStock = 0;
 
         public int Id
@@ -42,6 +44,8 @@ namespace BethanysPieShop.InventoryManagement
         public UnitType UnitType { get; set; }
         public int AmountInStock { get; private set; }
         public bool IsBelowStockThreshold { get; private set; }
+        public Price Price { get; set; }
+
         public Product(int id) : this(id, string.Empty)
         {
         }
@@ -52,16 +56,17 @@ namespace BethanysPieShop.InventoryManagement
             Name = name;
         }
 
-        public Product(int id, string name, string? description, UnitType unitType, int maxAmountInStock)
+        public Product(int id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock)
         {
             Id = id;
             Name = name;
             Description = description;
+            Price = price; 
             UnitType = unitType;
 
             maxItemsInStock = maxAmountInStock;
 
-            UpdateLowStock()
+            UpdateLowStock();
 
         }
 
@@ -138,7 +143,7 @@ namespace BethanysPieShop.InventoryManagement
         public string DisplayDetailsFull(string extraDetails)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
+            sb.Append($"{id} {name} \n{description}\n{Price}\n{AmountInStock} item(s) in stock");
             sb.Append(extraDetails);
             if (IsBelowStockThreshold)
             {
@@ -146,26 +151,6 @@ namespace BethanysPieShop.InventoryManagement
             }
             return sb.ToString();
         }
-
-        private void UpdateLowStock()
-        {
-            if (AmountInStock < 10)//for now a fixed value
-            {
-                IsBelowStockThreshold = true;
-            }
-        }
-
-        private void Log(string message)
-        {
-            //this could be written to a file
-            Console.WriteLine(message);
-        }
-
-        private string CreateSimpleProductRepresentation()
-        {
-            return $"Product {id} ({name})";
-        }
-
     }
 
 
