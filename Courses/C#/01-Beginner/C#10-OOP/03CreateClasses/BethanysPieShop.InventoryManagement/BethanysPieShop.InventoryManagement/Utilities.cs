@@ -15,7 +15,23 @@ namespace BethanysPieShop.InventoryManagement
             BoxedProduct boxedProduct = new BoxedProduct(
                 6, "Eggs", "Lorem ipsum", new Price() { ItemPrice = 10, Currency = Currency.Euro }, 100, 6);
 
+            //Polymorphism in action
+            //Product p1 = new BoxedProduct();
+            //Product p2 = new FreshProduct();
+            //p1.UseProduct(10);
+            //p2.UseProduct(5);
+            //Neither BoxedProduct or FreshProduct has implementation for UseProduct()
+            //Both invoke UseProduct() on the base class. 
 
+            //Polymorphism in action
+            //List<Product> products= new List<Product>();
+            //List must contain only <Product>s 
+            //Both <BoxedProduct> and <FreshProduct> are descendants of type <Product>
+            //They're still allowed! 
+
+            //Polymorphism in actions
+            // override on Parent 
+            // virtual on Child 
 
             ProductRepository productRepository = new();
             inventory = productRepository.LoadProductsFromFile();
@@ -103,7 +119,7 @@ namespace BethanysPieShop.InventoryManagement
                         break;
 
                     case "2":
-                        //ShowCreateNewProduct();
+                        ShowCreateNewProduct();
                         break;
 
                     case "3":
@@ -383,7 +399,99 @@ namespace BethanysPieShop.InventoryManagement
 
             Console.ReadLine();
         }
-    }
 
+
+        private static void ShowCreateNewProduct()
+        {
+            UnitType unitType = UnitType.PerItem;//default
+
+            Console.WriteLine("What type of product do you want to create?");
+            Console.WriteLine("1. Regular product\n2. Bulk product\n3. Fresh product\n4. Boxed product");
+            Console.Write("Your selection: ");
+
+            var productType = Console.ReadLine();
+            if (productType != "1" && productType != "2" && productType != "3"
+                && productType != "4")
+            {
+                Console.WriteLine("Invalid selection!");
+                return;
+            }
+
+            Product? newProduct = null;
+
+            Console.Write("Enter the name of the product: ");
+            string name = Console.ReadLine() ?? string.Empty;
+
+            Console.Write("Enter the price of the product: ");
+            double price = double.Parse(Console.ReadLine() ?? "0.0");
+
+            ShowAllCurrencies();
+            Console.Write("Select the currency: ");
+            Currency currency = (Currency)Enum.Parse(typeof(Currency), Console.ReadLine() ?? "1");
+
+            Console.Write("Enter the description of the product: ");
+            string description = Console.ReadLine() ?? string.Empty;
+
+
+            if (productType == "1")
+            {
+                ShowAllUnitTypes();
+                Console.Write("Select the unit type: ");
+                unitType = (UnitType)Enum.Parse(typeof(UnitType), Console.ReadLine() ?? "1");
+            }
+
+            Console.Write("Enter the maximum number of items in stock for this product: ");
+            int maxInStock = int.Parse(Console.ReadLine() ?? "0");
+
+            int newId = inventory.Max(p => p.Id) + 1;//find highest id and increase with 1
+
+            switch (productType)
+            {
+                case "1":
+                    newProduct = new Product(newId, name, description, new Price() { ItemPrice = price, Currency = currency }, unitType, maxInStock);
+                    break;
+
+                case "2":
+                    newProduct = new BulkProduct(newId++, name, description, new Price() { ItemPrice = price, Currency = currency }, maxInStock);
+                    break;
+
+                case "3":
+
+                    newProduct = new FreshProduct(newId++, name, description, new Price() { ItemPrice = price, Currency = currency }, unitType, maxInStock);
+
+                    break;
+
+                case "4":
+                    Console.Write("Enter the number of items per box: ");
+                    int numberInBox = int.Parse(Console.ReadLine() ?? "0");
+
+                    newProduct = new BoxedProduct(newId++, name, description, new Price() { ItemPrice = price, Currency = currency }, maxInStock, numberInBox);
+                    break;
+            }
+
+            if (newProduct != null)
+                inventory.Add(newProduct);
+        }
+
+        private static void ShowAllUnitTypes()
+        {
+            int i = 1;
+            foreach (string name in Enum.GetNames(typeof(UnitType)))
+            {
+                Console.WriteLine($"{i}. {name}");
+                i++;
+            }
+        }
+
+        private static void ShowAllCurrencies()
+        {
+            int i = 1;
+            foreach (string name in Enum.GetNames(typeof(Currency)))
+            {
+                Console.WriteLine($"{i}. {name}");
+                i++;
+            }
+        }
+    }
 
 }

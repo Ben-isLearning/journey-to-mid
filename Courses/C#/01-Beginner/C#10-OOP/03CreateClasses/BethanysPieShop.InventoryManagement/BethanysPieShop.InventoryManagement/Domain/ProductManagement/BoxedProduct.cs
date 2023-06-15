@@ -26,7 +26,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        public string DisplayBoxedProductDetails()
+        public override string DisplayDetailsFull()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Boxed Product\n");
@@ -38,7 +38,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             return sb.ToString();
         }
 
-        public void UseBoxedProduct(int items)
+        public override void UseProduct(int items)
         {
             int smallestMultiple = 0;
             int batchSize;
@@ -53,7 +53,35 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
                 }
             }
 
-            UseProduct(batchSize); //Use base Method
+            base.UseProduct(batchSize); //Use base Method
+        }
+
+        public override void IncreaseStock()
+        {
+            IncreaseStock(1);
+        }
+
+        public override void IncreaseStock(int amount)
+        {
+
+            //it is possible to call the base here too, but we are assuming that this is handled differently
+
+            int newStock = AmountInStock + amount * AmountPerBox;
+
+            if (newStock <= maxItemsInStock)
+            {
+                AmountInStock += amount * AmountPerBox;
+            }
+            else
+            {
+                AmountInStock = maxItemsInStock;//we only store the possible items, overstock isn't stored
+                Log($"{CreateSimpleProductRepresentation} stock overflow. {newStock - AmountInStock} item(s) order that couldn't be stored.");
+            }
+
+            if (AmountInStock > StockThreshold)
+            {
+                IsBelowStockThreshold = false;
+            }
         }
 
     }
