@@ -58,7 +58,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 
         public override void IncreaseStock()
         {
-            IncreaseStock(1);
+            AmountInStock++;
         }
 
         public override void IncreaseStock(int amount)

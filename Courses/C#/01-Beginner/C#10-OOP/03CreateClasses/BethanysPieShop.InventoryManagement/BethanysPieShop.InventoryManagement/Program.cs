@@ -17,12 +17,12 @@ Console.ReadLine();
 //Price samplePrice = new Price() {ItemPrice = 10, Currency = Currency.Euro };
 
 //// <T> x = new <T>
-//Product productOne = new Product(1, "Sugar", "Sweet as you like", samplePrice, UnitType.PerKg, 100);
+//Product productOne = new RegularProduct(1, "Sugar", "Sweet as you like", samplePrice, UnitType.PerKg, 100);
 //productOne.IncreaseStock();
 //productOne.Description = "refined surgar. Sweet as you like.";
 
 //// var = new <T>
-//var productTwo = new Product(2, "Milk", "Skimmed cow juice, yum.", samplePrice, UnitType.PerKg, 50);
+//var productTwo = new RegularProduct(2, "Milk", "Skimmed cow juice, yum.", samplePrice, UnitType.PerKg, 50);
 //productTwo.IncreaseStock();
 
 //// <T> = new() ~ Poor for intellisence 
@@ -30,7 +30,7 @@ Console.ReadLine();
 //productThree.IncreaseStock();
 
 ////Object Initialization ~ Private fields can't be set like this 
-//Product productFour = new Product(4) { Name = "Chocolate", Description = "Sweet cocoa goodness", Price = samplePrice, UnitType = UnitType.PerKg };
+//Product productFour = new RegularProduct(4) { Name = "Chocolate", Description = "Sweet cocoa goodness", Price = samplePrice, UnitType = UnitType.PerKg };
 //productFour.IncreaseStock();
 
 

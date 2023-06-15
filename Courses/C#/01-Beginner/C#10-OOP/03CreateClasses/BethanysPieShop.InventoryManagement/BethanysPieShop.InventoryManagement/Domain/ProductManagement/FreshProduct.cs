@@ -13,7 +13,10 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
         public FreshProduct(int id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock) :
             base(id, name, description, price, unitType, maxAmountInStock)
         { }
-
+        public override void IncreaseStock()
+        {
+            AmountInStock++;
+        }
         public DateTime ExpiryDateTime { get; set; }
         public string? StorageInstructions { get; set; }
 
