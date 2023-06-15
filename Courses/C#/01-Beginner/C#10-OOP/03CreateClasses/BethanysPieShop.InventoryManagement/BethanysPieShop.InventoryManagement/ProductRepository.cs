@@ -1,5 +1,7 @@
-﻿using BethanysPieShop.InventoryManagement.Domain.General;
+﻿using BethanysPieShop.InventoryManagement.Domain.Contracts;
+using BethanysPieShop.InventoryManagement.Domain.General;
 using BethanysPieShop.InventoryManagement.Domain.ProductManagement;
+using System.Text;
 
 namespace BethanysPieShop.InventoryManagement
 {
@@ -9,6 +11,7 @@ namespace BethanysPieShop.InventoryManagement
     {
         private string directory = @"C:\journey-to-mid\Courses\C#\01-Beginner\C#10-OOP\03CreateClasses\";
         private string productsFileName = "products.txt";
+        private string productsSaveFileName = "products2.txt";
 
         private void CheckForExistingProductFile()
         {
@@ -132,6 +135,24 @@ namespace BethanysPieShop.InventoryManagement
             }
 
             return products;
+        }
+
+        public void SaveToFile(List<ISaveable> saveables)
+        {
+            StringBuilder sb = new StringBuilder();
+            string path = $"{directory}{productsSaveFileName}";
+
+            foreach (var item in saveables)
+            {
+                sb.Append(item.ConvertToStringForSaving());
+                sb.Append(Environment.NewLine);
+            }
+
+            File.WriteAllText(path, sb.ToString());
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Saved items successfully");
+            Console.ResetColor();
         }
     }
 }

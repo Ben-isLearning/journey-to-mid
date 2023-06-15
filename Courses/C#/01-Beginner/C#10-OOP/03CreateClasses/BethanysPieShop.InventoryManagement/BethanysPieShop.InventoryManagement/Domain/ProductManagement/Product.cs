@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 {
-    public abstract partial class Product
+    public abstract partial class Product : ICloneable
     {
         private int id;
         private string name = string.Empty;
         private string? description;
 
         protected int maxItemsInStock = 0;
+
+        public static int StockTreshold = 5;
 
         public int Id
         {
@@ -101,7 +103,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
         //    AmountInStock++;
         //}
 
-        public abstract void IncreaseStock(); 
+        public abstract void IncreaseStock();
 
         public virtual void IncreaseStock(int amount)
         {
@@ -163,7 +165,7 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             return sb.ToString();
         }
 
-
+        public abstract object Clone();
     }
 
 

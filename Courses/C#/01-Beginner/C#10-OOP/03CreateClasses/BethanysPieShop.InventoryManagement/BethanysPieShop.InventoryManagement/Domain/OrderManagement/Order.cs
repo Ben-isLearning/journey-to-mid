@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BethanysPieShop.InventoryManagement.Domain.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BethanysPieShop.InventoryManagement.Domain.OrderManagement
 {
-    public class Order
+    public class Order: ISaveable, ICloneable
     {
         public int Id { get; private set; }
         public DateTime OrderFulfilmentDate { get; private set; }
@@ -41,6 +42,16 @@ namespace BethanysPieShop.InventoryManagement.Domain.OrderManagement
 
             return orderDetails.ToString();
 
+        }
+
+        public string ConvertToStringForSaving()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BethanysPieShop.InventoryManagement.Domain.General;
+﻿using BethanysPieShop.InventoryManagement.Domain.Contracts;
+using BethanysPieShop.InventoryManagement.Domain.General;
 using BethanysPieShop.InventoryManagement.Domain.OrderManagement;
 using BethanysPieShop.InventoryManagement.Domain.ProductManagement;
 
@@ -83,6 +84,25 @@ namespace BethanysPieShop.InventoryManagement
                     break;
             }
         }
+
+        private static void SaveAllData()
+        {
+            ProductRepository productRepository = new();
+
+            List<ISaveable> saveables = new List<ISaveable>();
+
+            foreach (var item in inventory)//now a list of Products
+            {
+                saveables.Add(item as ISaveable);
+            }
+
+            productRepository.SaveToFile(saveables);
+
+            Console.ReadLine();
+            ShowMainMenu();
+        }
+
+
 
         private static void ShowInventoryManagementMenu()
         {
@@ -492,6 +512,23 @@ namespace BethanysPieShop.InventoryManagement
                 i++;
             }
         }
+
+        private static void ShowChangeStockTreshold()
+        {
+            Console.WriteLine($"Enter the new stock treshold (current value: {Product.StockTreshold}). This applies to all products!");
+            Console.Write("New value: ");
+            int newValue = int.Parse(Console.ReadLine() ?? "0");
+            Product.StockTreshold = newValue;
+            Console.WriteLine($"New stock treshold set to {Product.StockTreshold}");
+
+            foreach (var product in inventory)
+            {
+                product.UpdateLowStock();
+            }
+
+            Console.ReadLine();
+        }
+
     }
 
 }

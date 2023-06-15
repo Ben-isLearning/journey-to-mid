@@ -1,14 +1,16 @@
-﻿using BethanysPieShop.InventoryManagement.Domain.General;
+﻿using BethanysPieShop.InventoryManagement.Domain.Contracts;
+using BethanysPieShop.InventoryManagement.Domain.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 {
-    public class BoxedProduct : Product
+    public class BoxedProduct : Product, ISaveable, ICloneable
     {
         public BoxedProduct(int id, string name, string? description, Price price, int maxAmountInStock, int amountPerBox)
             : base(id, name, description, price, UnitType.PerBox, maxAmountInStock)
@@ -46,10 +48,10 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             while (true)
             {
                 smallestMultiple++;
-                if (smallestMultiple * AmountPerBox > items) 
-                { 
-                    batchSize = smallestMultiple * AmountPerBox; 
-                    break; 
+                if (smallestMultiple * AmountPerBox > items)
+                {
+                    batchSize = smallestMultiple * AmountPerBox;
+                    break;
                 }
             }
 
@@ -84,5 +86,14 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
             }
         }
 
+        public string ConvertToStringForSaving()
+        {
+            return $"{Id};{Name};{Description};{maxItemsInStock};{Price.ItemPrice};{(int)Price.Currency};{(int)UnitType};1;{amountPerBox};";
+        }
+
+        public override object Clone()
+        {
+            return new BoxedProduct(0, this.Name, this.Description, new Price() { ItemPrice = this.Price.ItemPrice, Currency = this.Price.Currency }, this.maxItemsInStock, this.AmountPerBox);
+        }
     }
 }

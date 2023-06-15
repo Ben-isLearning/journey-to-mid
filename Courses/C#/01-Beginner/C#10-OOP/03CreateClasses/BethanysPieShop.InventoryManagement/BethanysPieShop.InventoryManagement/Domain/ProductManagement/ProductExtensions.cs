@@ -59,4 +59,4 @@ namespace BethanysPieShop.InventoryManagement.Domain.ProductManagement
 
     }
 }
-}
+
