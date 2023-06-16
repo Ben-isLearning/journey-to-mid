@@ -1,0 +1,16 @@
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\CoffeeMachineData.csv
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\WiredBrainCoffee.DataProcessor.exe
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\WiredBrainCoffee.DataProcessor.deps.json
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\WiredBrainCoffee.DataProcessor.runtimeconfig.json
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\WiredBrainCoffee.DataProcessor.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\bin\Debug\net6.0\WiredBrainCoffee.DataProcessor.pdb
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.csproj.AssemblyReference.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.GeneratedMSBuildEditorConfig.editorconfig
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.AssemblyInfoInputs.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.AssemblyInfo.cs
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.csproj.CoreCompileInputs.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\refint\WiredBrainCoffee.DataProcessor.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.pdb
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\WiredBrainCoffee.DataProcessor.genruntimeconfig.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Unit Testing\Project\WiredBrainCoffee.DataProcessor\obj\Debug\net6.0\ref\WiredBrainCoffee.DataProcessor.dll
