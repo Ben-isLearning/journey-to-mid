@@ -1,0 +1,50 @@
+Why Handle errors? 
+    To Prevent program crashing (duh)
+    To prevent dataloss / cascade failures 
+
+    Chance to fix/retry error 
+
+    Present meaningful error & perform graceful exit 
+
+    Opportunity to log errrs 
+
+    ++helps to produce self documenting code 
+___________________________
+
+Ancient Way; 
+
+    Using error codes ~ magic numbers 
+    Hella gross switch statements 
+    Errors don't bubble up. 
+    
+
+New Way (Exceptions); 
+
+    Don't care about error / success codes 
+    Don't need switches eveywhere 
+    More readable
+    No magic numbers 
+    Exceptions can bubble up 
+    Can catch exceptions higher up / in one place 
+    Handle system errors 
+    Generate exceptions from constructors. 
+
+___________________________
+
+Exception in a nutshell
+    Objects that inherit from System.Exceptions 
+
+    Generated with 'throw'
+
+    Different classes represent different errors 
+
+    Contain additional error inco 
+
+    Different exceptions can be handled differently 
+
+___________________________
+
+Exceptions can come from 
+    .NET 
+    NuGet
+    or custom 

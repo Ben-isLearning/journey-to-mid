@@ -96,7 +96,6 @@ The BDD Process (Through an example)
             Concept 
             Identify the related questions based on the same words used 
 
-
     02- Requirement Workshop ~ Whole Team 
         Explore and discover through examples 
         (Sprint Planning)
@@ -156,8 +155,7 @@ The BDD Process (Through an example)
 
                     Can split Story into AC points & Postpone them untill the next sprint 
 
-
-    03- Formulation   ~ Dev & Tester (Creating a single source of truth)
+    03- Formulation   ~ Dev & Tester (Creating a single source of truth ~ GivenWhenThen from UserStories)
         1 AC >> Many Examples
         Convert examples to GivenWhenThen Scenarios
 
@@ -200,23 +198,150 @@ The BDD Process (Through an example)
             Newly added scenarios should be accompanied by the @formulated tag (@ignore tag?)
             which indicates that they are not ready to execute yet. 
 
-
-    04- Review ~ Whole Team 
+    04- Review ~ Whole Team (Send to Team Chat)
         Get feedback on scenarios from buisness 
         Perhaps in a teams chat asking to look at the pushed Gherkins, 
         or even scheduel a meeting to discuss
 
-
     05- Automate ~ Dev & Tester ()
-        Define step definitions 
+        Define step definitions in xStepDefinitions.cs 
         Fill the step definitions with bare bones ~ 
-            The context, the base class, the services we will need, 
-
+            The context, the base class, the services we will need & the expected outcome 
     
-    06- Implement ~ Dev ()
-        Reached 1h 20m of Lesson 1 ~ https://specflow.org/school/bdd-masterclass/?lesson=lesson-1
+    06- Implement ~ Dev ()  
+        Identify what you need ~ Ie implement a new service that has a getter and a setter 
+        TDD ~ Red Green Refactor  
+        Create test class for new service implement expectations and get into red 
+            Write enough logic to pass the tests 
+            Tests are passing ~ yay! 
+        BDD SpecFlow scenario covering this should be unignored & passing here too
+
+        Manually test new functionality, see any pain points (slow loading etc) 
+            Fix pain points 
+
+        Back To Step 03, Formulate the next UserStory
+            Begin the process again!
+
+    07- Supplementary Testing ~ Dev / Tester ()
+        ~ All scenarios are implemented. 
+            All unit tests are passing 
+            All BDD tests are passing. 
+        
+        Potentally create more tests for any edge cases? 
+
+    08- Release ~ Dev 
+        ~Produce a shippable increment 
+    
+______________________________________
+BDD vs Other Test Methods 
+
+    BDD     Vs      TDD
+
+        >Both are TDD approaches 
+        >Both supported by automated tests 
+        >Both are useful agile practices 
+        >BDD can be used without TDD & Still work. (Useful to use together tho)
+
+        ~BDD: Primary target is funcional quality    ~ This works in line with buinsess functionality 
+        ~TDD: Primary target is technical excellence ~ This works in line with method x() functions exactly as the Dev intends. 
+
+        ~BDD: External Expectations ~ I fulfil someone else's expectations 
+        ~TDD: Internal Expectations ~ I make expectations for myself 
+
+
+        TDD Cycle: 
+            Red >> Green >> Refactor >> 
+
+        BDD Cycle: 
+            Failing Scenario >> V >> Passing Scenario >> Refactor >> 
+                        Red >> Green >> Refactor >>
+       
+    BDD     Vs      Functional automated regression testing 
+    
+        >Both target functional quality 
+        >BDD Scenarios become useful regresion tests once the related functionality is done 
+        >Automation code can be used for both 
+
+        ~BDD:  Primarly for driving the implementation 
+        ~FART: Just a nice side effect 
+               
+        There might be regression tests that are not required as specification 
+            bug regression tests 
+            cases where GivenWhenThen isnt ideal 
+            ensure these scenarios are seperate from standard BDD 
+        
+        BDD is a subset of FART, which focuses on specification
+
+    BDD     Vs      Manual Regression Testing 
+    
+        >Both target functional quality 
+        >Both are prescribed 
+        >Both can be used to catch regression issues 
+        >Both need actions to be performed to complete the test 
+
+        ~Cost factors are different 
+            ~Manual: Human execution costs 
+            ~BDD:    implementing and maintaining tests 
+
+        ~Verification options are different 
+            ~Manual: Human can check many things at once 
+            ~BDD     Good at checking only one thing at once 
+
+        ~Different testing flows 
+            ~Manual: Long user journey tests alot 
+            ~BDD:    Focus on one buisness rule and have many smaller tests (scenarios) 
+
+    BDD     Vs      Exploratory Testing 
+
+        >Both are agile testing techniques 
+        >Both can arget functional Quality 
+
+        ~BDD:  uses prescribed checks 
+        ~ ET:  uses guided exploration  
+
+        ~BDD:   Targeting functional quality 
+        ~ ET:   targeting functionality, operational quality, security, usability, robustness etc  
+
+        Exploratory testing can catch those areas that are hard to reach with automated tests 
+
+    BDD     Vs      Performance / Security / Supplementaty tests 
+
+        >Both contribute to quality 
+        >Both can be used as verification technique and supporting technique 
+
+        ~BDD tests functional quality 
+        ~ X  tests operational quality 
+
+        ~BDD used mainly as supporting technique that guides the development 
+        ~ X  used mainly as verification technique that critiques the product 
+ 
+        ~BDD: buisness-relevant tests are described in buisness language
+        ~  X: technical tests described in test language 
 
 ______________________________________
-BDD and Other Test Methods 
 
+Wrap Up 
+
+BDD composed of Discovery, Formulation & Automation 
+    Discovery;      Done with whole team 
+    Formulation:    Done seperately, usually done by tev-tester Primarly
+    Automation:     Should preceed implementation 
+
+
+Q; Can SpecFlow replace Unit tests? 
+    No. 
+    Specflow tests  ensure buisness rules,
+    Unit tests ensure technical excellence.
+
+Q; Is there an Or keyword in Gherkin? 
+    No. 
+    Gherkin scenrios are concrete examples. 
+    user A is doing A, or B user is doing B. 
+    a user cannot do A OR B. 
+
+Q; Tools for Discovery & Implementation Phase? 
+    Yes. 
+    Anything with colaborative editing, Gaspar uses Miro.
+    Discovery focuses on brainstorming ~ As long as you're fleshing out examples, use whatever 
+    Formulation, can do this straight in VS, Pull request discussion is sufficient. (maybe snip and share?)  
 

@@ -1,0 +1,15 @@
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\bin\Debug\net6.0\ConsoleCalculator.exe
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\bin\Debug\net6.0\ConsoleCalculator.deps.json
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\bin\Debug\net6.0\ConsoleCalculator.runtimeconfig.json
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\bin\Debug\net6.0\ConsoleCalculator.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\bin\Debug\net6.0\ConsoleCalculator.pdb
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.csproj.AssemblyReference.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.AssemblyInfoInputs.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.AssemblyInfo.cs
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.csproj.CoreCompileInputs.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\refint\ConsoleCalculator.dll
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.pdb
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ConsoleCalculator.genruntimeconfig.cache
+C:\journey-to-mid\Courses\C#\02 - Intermediate\C# Error Handling\ConsoleCalculator\ConsoleCalculator\obj\Debug\net6.0\ref\ConsoleCalculator.dll

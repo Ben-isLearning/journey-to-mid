@@ -1,0 +1,43 @@
+Exception Bubbling; 
+    * >> means Calls 
+
+    Method A    >>  Method B    >>  Method C 
+                                            Throws Exception 
+                                    Handles? 
+                    Handles?    
+    Handles?
+
+    If no method handles the exception, then it bubbles all the way up to 
+    the user, and then our app goes bang. 
+
+
+    Method A    >>  Method B (try..catch)   >>  Method C 
+                                                    Throws Exception 
+                                                Handles? 
+                    Handles in the catch     
+    Handles?
+
+    Method B does something in the try block to stop the Exception 
+    bubbling further 
+
+_________________________________________________________________________
+
+try...catch...finally blocks need to be set out in most to least specific. 
+
+try
+{
+    //Something 
+}
+catch (ArgumentNullException ex)
+{
+    //Handle ArgumentNullException
+}
+catch (Exception ex)
+{
+    //Handle Any other Exception 
+}
+finally 
+{
+    //Always executes code regardless of error or success
+}
+
