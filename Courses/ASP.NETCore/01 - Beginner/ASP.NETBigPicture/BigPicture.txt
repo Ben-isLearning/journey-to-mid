@@ -65,6 +65,166 @@ What is ASP.NET Core 6?
 
 Understanding Server-rendered Frontend Applications 
 
+    Server-rendered frontend Applications 
+
+        Server                          Browser 
+
+                        << HTTP  
+        Processes 
+        Request  
+
+                        Response >>     Entire page 
+                                        in HTML & CSS                         
+        
+        New requests generates new HTTP Request 
 
 
 
+        RazorPages: 
+
+        Server                                  Browser 
+                        << HTTP GET /create 
+            Page named 
+            Create 
+            Renders page        
+                            Response    >>          Entire page in HTML & CSS     
+        
+        Server                                              Browser 
+                                    << HTTP POST /create    <input
+                                                            name="NewProduct.Name" 
+                                                            value="Backpack"/>
+
+                                                            <input
+                                                            name="NewProduct.Price"
+                                                            value="100"/>
+          [BindProperty]
+          Product NewProduct {get; set;}  
+
+          VV
+          OnPost() 
+              Validation Failed? 
+                  >Return 
+              >Perform actions
+
+        MVC: 
+            Model View Controller 
+
+        Server                                      Browser 
+                                << HTTP GET             Action 
+            Controller 
+            Method() is hit
+                V
+            Model is generated 
+                V
+            View is Rendered    
+                                Response        >>      Fully generated HTML 
+
+
+Understanding Client-rendered Frontend Applications 
+    Leverage the power of client-side rendering 
+
+
+    Server                          Browser 
+                    << HTTP  
+    All frontend 
+    assets and 
+    Logic 
+                    Response >>     Entire application 
+
+    Additional navigation requests will be handled by the BrowserRouter within the browser 
+
+                    << HTTP 
+
+    DATA 
+                    Products  >>    Data     
+                    
+    Additional data requests will be requested, and the Data will only return the required data. 
+
+
+    Blazor WebAssembly  ~ Client renders application 
+        Components in Components in Componets 
+        Page Components     Live in  /Pages 
+        minior Components   Live in  /Components 
+
+    Blazor Server       ~ Server Renders applicaition 
+        Server and Browser are connected by SignalR 
+        Only updated HTML is transfered 
+
+
+    WebAssembly                 Vs          Server 
+    Minimises server load                   Server is workhorse 
+    Scaling is cost effective               Scaling is £££
+    Longer initial load times               Normal initial load times 
+    Can work offline                        Online only 
+    Restricted to browser capabilies        Can use most .NET APIs 
+
+
+Understanding Backend API Applications 
+
+    Backend needs to receive and send serialised data , ie JSON; 
+
+        Server                  Browser 
+        API           <<        Request
+         V                
+        Database      >>        Blazor WASM 
+
+    REST 
+        Leverage HTTP protocol 
+        Unique endpoints provide different data 
+        HTTP Methods are mapped to actions 
+        HTTP Status codes are used to determine outcomes 
+        Responses can contain pointers on what to do next 
+
+    Web API 
+        Controller  <<      JSON 
+           v
+        Model       >>      JSON 
+
+        Program.cs calls 
+            MapControllers();
+            UseCors()
+            UseSwagger()
+            UseSwaggerUI()
+
+        Controller is heart of API  ~ [ApiController]  [Route("[controller]")]
+
+    Minimal APIs 
+        Rather than calling MapControllers() and using controllers to handle HTTP 
+        we call AddEndpointsApiExplorer() and using app.MapGet() app.MapPost() methods for each endpoint
+         
+    gRPC 
+        Uses Remote Procedure Call 
+            >Calling a method from a remote location 
+        Focus on performance 
+        Uses Protocol Buffers 
+        Contract First
+
+        REST              Vs            gRPC 
+        Content First                   Contract First 
+        Message content human readable  Optimized Binary 
+        Utilizes HTTP                   Hides remoting complexity using RPC 
+        Looser Coupling                 Tight coupling
+        +Good for External              +Good for Internal 
+
+    SignalR 
+        Technique used to call methods on clients from a server application.    
+
+        Hub facilitates these calls 
+            Uses WebSockets
+            or Server Sent Events 
+            or Long Poling 
+
+        Uses RPC 
+            Method on Client is called by Method on Hub 
+            Method on Hub is called by Method on Client 
+
+        SignalR 
+            Doesnt have a contract 
+            less reliable than HTTP 
+            security lacking 
+            *Mostly used to tell UIs to update 
+        
+        Client calls SendMessageToAll() on the Hub 
+        the Hub then calls Message() on every clients 
+
+        
