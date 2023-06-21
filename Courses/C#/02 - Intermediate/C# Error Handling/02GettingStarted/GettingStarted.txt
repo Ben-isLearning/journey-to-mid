@@ -41,3 +41,53 @@ finally
     //Always executes code regardless of error or success
 }
 
+______________________________________
+
+Stack Trace; 
+
+    Work backwards to see where the offending code begun 
+
+    Origin 
+        Method X 
+            Main() 
+
+______________________________________
+
+Good practices; 
+
+    Do not add a catch block that does nothing, or just rethrows 
+        Catch blocks should add some value 
+        Maybe just log the error? 
+        Do not ignore exceptions. Ever. 
+
+    Do not use exceptions for normal program flow 
+        You expect input to be invalid sometimes 
+        not an exceptional situation.
+        Because its part of expected logic flow
+
+        Use IsValid(x) methods
+
+    Design code to avoid exceptions 
+        int Parse(string input)     ~ if invalid string, could throw exception. 
+        int TryParse(string input, out int result)  ~ if valid result, else false 
+
+        if (connection.State != ConnectionState.Closed)     ~ Set up to only close connections if they're open 
+        {
+            connection.Close();
+        }
+
+        Condiffer returning null or null object pattern for extremely common errors
+
+    Use correct grammar in exception messages 
+        punctuation
+        spelling
+        end sentences with . 
+        consider error message localization 
+
+    Use finally blocks for clean-up
+        eg calling Dispose()
+        Callers of methods should be able to assume no unexpected side effects 
+        when exception is thrown/caught 
+
+        
+        

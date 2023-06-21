@@ -11,8 +11,10 @@ public class Calculator
             return Divide(num1, num2);
         }
         else {
-            Console.WriteLine("Unknown Operation.");
-            return 0;
+            throw new ArgumentOutOfRangeException(nameof(operation), "The mathematical operator is not supported.");
+
+            //Console.WriteLine("Unknown Operation.");
+            //return 0;
         }
     }
 
