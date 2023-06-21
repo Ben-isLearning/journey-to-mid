@@ -1,0 +1,305 @@
+Formulation: Best practices for writing SpecFlow BDD scenarios using the Given, When and Then keywords
+
+BDD Summary; 
+    BDD Scenario is a bridge between Requirement and the solution 
+
+    Requirements >> Make the requirements testable
+                    <SpecFlow Scenario used to...> 
+                    Make the tests understandable  <<   App 
+
+                    Scenario: User votes up a question 
+                        Given a user asked with 2 votes 
+                        And the user is authenticated
+                        When the user votes up the question 
+                        Then the votes should be changed to 3 
+
+    Requirements << Validates 
+                    <Specflow Scenario actually...>
+                    Verifies    >> App 
+
+    One Scenario has multiple purposes;     
+        Illistration of requirements 
+        Automated tests 
+        Documentation of behaviour 
+            BDD Begins as TDD 
+            BDD Ends as Regression testing
+______________________________________
+
+01- What is formulation?
+    Formulation is an activity when we document domain examples as BDD scenarios with Given/When/Then 
+
+    Test design/writing     
+        Analyzing buisness requirements 
+        Define equivalence groups of inputs 
+        find edge cases 
+        gather required test data 
+        write a test scripts 
+
+     vs 
+
+    Formulation 
+        buisness rules have already been discussed during "Discovery" 
+        We already identified examples to illustrate the rules. 
+
+        Now we need to discribe the example in a more formal way. 
+            So that SpecFlow can work with it 
+            And we it works as long-term documentation 
+
+02- What is done during formulation?
+    *Its about documentation, not automation*
+    As a pair (or more);
+    
+        Identify context, action and outcome (Given/When/Then)
+            ~Is this preperation step really important to be able to get the expected outcome? 
+
+        Review/Fix buisness terminology to be used 
+            ~Are we really calling them "Client" or "User"?
+
+        Turn the scenario into proper english sentences (grammar tenses, word orde)
+            ~as this has happened earlier, we should use past tense for this Step
+        
+        Reuse existing phrasing styles from other scenarios, or even complete steps. 
+            ~I think we had a scenario that described a similar problem, lets look at that. 
+
+        Make sure the steps make a sequential flow (so it is possible to automate them)
+            ~The question to be voted should have been created earlier by another user, otherwise we cannot vote for them! 
+
+03- Anatomy of Gherkin (Formulation ~ Turning ACs into Gherkin Scenarios)
+
+    Scenario:   ~ Defines the context ~ The one where... 
+    Given       ~ Describes context 
+    And         ~ Additional step, continuation of prior step 
+    When        ~ Action that initiates behavior (Should only have 1 When step)
+    Then        ~ The expected outcome. 
+
+    Gherkin Syntax;
+        Business-readable specification language 
+            using Given/When/Then 
+
+        Developed as a part of Cucumber, promoted to its own thing 
+
+        Designed to be simple, therefore lacks programming constructs 
+            No conditions, no variables, no loops. 
+
+04- Creating a Scenario 
+
+    Flow;     
+        A User Story is given to us from above 
+            User stories are Split out into Acceptance Criteria (Rules)
+                Discovery Phase Using Example Mapping>>
+                Acceptance Criteria split out into Examples (Acceptance Tests~ Ex1 is good, Ex2 is bad)
+
+                Formulation Phase>> 
+                Examples are split out into Gherkin Scenarios 
+
+                Coding Occurs using TDD >>
+                Gherkin Scenarios form Documentation of the Acceptance Criteria; 
+                    Rules should be direct copies of AC. 
+                    Scenarios should verify the production code written to satisy the AC. 
+
+    Formulation Summary; 
+        Formulaion is documenting examples with GivenWhenThen,
+            not test design/writing 
+            not creating an automated test 
+
+05- Buinsess Rules ~ (Be clear about buisness rules we illustrate, BEFORE formulation)     
+    What is the business rule? 
+        "Questions with atleast one common word should be suggested" 
+            Yes
+            Ex;     
+                Scenario: Another question contains the same word 
+                Given there are questions asked as "What is SpecFlow?" 
+                And the user is authenticated 
+                When the user starts asking a question as "Best SpecFlow Practices" 
+                Then the suggestions list should be "What is SpecFlow?" 
+    
+        "When clicking the button above the vote number, the number in the vote box should increase" 
+            No ~ This is an AC, for UI specification.  
+                it specifies the expected user interface changes 
+                Does bot highlight the real meaning of the rule 
+        
+            Suggested Rule ~ "Users can vote up and down questions"
+                Ex; 
+                    Scenario: The user votes up a question 
+                    Given there is a question asked with 2 votes 
+                    And the user is authenticated 
+                    When the user votes up the question 
+                    Then the vote count of the question should be changed to 3
+
+        "The latest 10 questions should be shown on the homepage" 
+            Yes ~ Dont be disturbed by the words "page" and "show" ~ this is till refering to business concepts 
+                If something needs to be implemented in the back end, its most likely a business rule. 
+            Ex; 
+                Scenario: The latest question is shown on the homepage with details 
+                Given there is a question just asked as "How to write better BDD Scenarios" 
+                When the user checks the home page 
+                Then the question should be listed among the latest questions as above 
+
+                Scenario: The latest 10 questions are shown on the home page 
+                Given there are 12 questions asked 
+                When the user checks the home page 
+                Then the home page should contain the 10 latest questions ordered 
+
+        "The content is mandatory when answering questions" 
+            Yes, but... ~ Validation is tricky because it needs to be implemented in both backend and frontend
+                usually we dont need to write code for them, but only mark fields as mandatory
+                Validation rules can be expressed with BDD scenarios, but it's not the best use of effort/time 
+            Ex; 
+                Scenario: Cannot post an aswer with empty content 
+                Given there is a question asked 
+                And the user is authenticated 
+                When the user attempts to answer the question as ""
+                Then the answer attempt should fail with error "Content cannot be empty" 
+
+        "The /api/questions POST request should provide a 401 result if user is not authenticated"
+            It depends... 
+                if this is the Private interface between the frontend and the backend, then it is similar to the UI one: No 
+                    Specifies the solution details 
+                    Might hide the buisness intention 
+
+                if this is a Public API: Yes 
+                    This is important for integrators who want to connect to our API 
+                    The scenarios formulated for these make a targeted documentation 
+            Ex;
+                Scenario: Anonymous user cannot answer questions 
+                Given the user is not authenticated in the session 
+                When a POST request is sent to /api/questions with """ {"title" : "What is SpecFlow?", "body": "..."} """
+                Then the request should be responded with code 401 
+
+06- BRIEF Principles ~ The 'Golden Rules' of formation
+    
+    Business Language
+        Describe the actions in broad strokes ~ Aids cross-discipline collaboration 
+    Real Data 
+        Provide concrete details, illustrate an actual realistic scenario. 
+        Helps reveal assumptions and edge cases 
+    Intention Revealing
+        Describe intention, not operations
+            Given I have logged in 
+            And I have added a question with ... 
+                VS 
+            Given there is a question added with ... 
+
+            Given I have logged in 
+                VS 
+            @authenticated        
+    Essential
+        Only contain information relevant to the outcome 
+        Omit any information that doesn't directly illustrate behaviour 
+        Unnecessary, unimportant, irrelivant and incidental details cause confusion. 
+    Focus
+        One scenario should only focus on one Acceptance Criteria / business rule
+
+    BRIEF Examples; 
+
+        Scenario: The application home page is identifiable 
+            When i check the home page 
+            Then the title should be 'SpecOverflow - Home' 
+
+        @authenticated 
+        Scenario: New questions should be added to the question list 
+            When I ask a new question 'How to write better BDD scenarios?'
+            Then the question should appear in the question list with todays date as 
+            | Title                              | Views | Votes |
+            | How to write better BDD scenarios? | 0     | 0     |
+
+        @authenticated
+        Scenario: The details of the question can be accessed from the question list 
+            Given there is a question added with 
+            | Title                              | Body           |
+            | How to write better BDD scenarios? | I can't get it |
+            When I navigate to the question details from the home page 
+            Then the question details should be visible as above  
+
+07- Does Automation Matter?  ~ Hide incidental, show real data 
+    
+    3 Concrete Examples ~ 
+        Does it matter how I will automate this? 
+            No ~
+            Ignore automation during formation, so that you can automate better 
+
+        Reuse steps or create new steps? 
+            Reuse what you can where you can 
+            Readability > Reusability. 
+
+        Without details, how do we know what data was used for testing? 
+            Details are important 
+                But do we need to keep the details in the scenario, 
+                where they cause noise and maintenance problems. 
+                Automation layer can handle detaisl better
+                Automation solution can log these details during execution. 
+
+08- Data driven scenarios 
+
+    Different kind of rules; 
+        Rules that combination of data is more important ~ ie calculating shipping costs
+            Matching input & output values 
+            <books> and <reigon> are used to calculate <cost> 
+            *Examples are not for free ~ Require maintenance over time* 
+
+            Feature: Shipping cost calculation 
+            Rule: £2 * count, EU +£5, US: +£10 
+
+            Scenario Outline: Calculate shipping costs 
+                Given the client puts <books> books to cart 
+                And their shipping address in is <reigon> 
+                When the shippnig costs are calculated 
+                Then the shipping costs should be £ <cost>
+            Examples: 
+            | description   | books     | reigon    | cost  |
+            | most common   | 1         | Europe    | 7     |
+            | common EU     | 2         | Europe    | 9     |
+            | common foreign| 1         | US        | 12    |
+
+09- Improving Readability 
+
+    Using Tags ~ 
+        Categorizing scenarios and providing Documentation 
+            Highlighting a subset of scenarios ~ @smoke, @fast 
+            Creating target reports for different areas of the buisness ~ @pricing 
+            Indicating scenarios that are reliant on external systems ~ @twitter 
+            Tracking scenario automation lifecycle with tags ~ @formulated, @inprogress 
+            Tagging scenarios with external identifiers ~ @feature:1234 
+            Tagging scenaris with automation details ~ @manual, @browser, @authenticated
+
+    Using Feature description ~ 
+        Free text between Feature: and Scenario: 
+            Can put any background information to undertstand the context of the feature 
+            COMMENTS CAN'T BE VALIDATED 
+            Can be enhanced with markdown 
+
+    Using Background ~ 
+        if every scenario in the document starts with the same step, 
+        we can put it in the Background: to ensure that all scenarios call that step. 
+        +Avoids duplication  
+        -Disturbs readability :s 
+        Murphys law ~ Always 1 that needs different context 
+
+            Feature: Voting for questions 
+
+            Background: 
+                Given the user is authenticated 
+
+            Scenario: the user votes up a question  
+                Given there is a question asked with 2 votes 
+                When the user votes up the question 
+                Then the vote count of the question should be changed to 3 
+
+            Scenario: the user votes down a question 
+                Given there is a question with 2 votes 
+                When the user votes down the question 
+                Then the vote count of the question should be changed to 1 
+
+10- Summary & Q+A 
+
+    Coffee Machine Test; 
+        You want to go for a coffee @ the machine 
+        You want to explain your work to a colleague @ the machine 
+            "I'm working on the part where the user does X, then Y, then Z, then 1, then 2, then 3." 
+            
+            If this is the case, then you need abstraction. 
+            Abstract the intentions from the mechanical steps. 
+
+    
+
+
