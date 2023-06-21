@@ -1,0 +1,70 @@
+What is ASP.NET Core 6?
+
+    Why ASP.NET Core exists~ 
+        Web site    vs  Web application 
+        Static          Dynamic 
+
+        A framework ~   You can drive a car 
+                        You don't need to understand the inner workings of the engine
+
+    What to build with ASP.NET Core ~ Anything you like 
+        Front/Backend 
+            Backend     < Data >   Front End   >   HTML    >   Browser 
+            Database   
+
+        Centralized backend 
+            Backend     < Data >    Front end 
+            Database    
+                        < Data >    Front end 
+
+                        < Data >    (another) Back end 
+
+        Frontend Solutions; 
+            MVC 
+            Razor Pages 
+            Blazor 
+
+        Backend Solutions;  
+            Web API 
+            gRPC 
+        
+        Supporting; 
+            SignalR
+
+    Choosing a Web Application Framework ~ 
+        All built on same Foundation. 
+        Open Source 
+        Modular 
+        Cross Platform 
+        .NET and C#, F#, VB 
+
+    Starting and Hosting an Application ~ 
+        Starts by executing Program.cs 
+            utilises Built-In Kestrel Web Server 
+
+        Browser >> IIS >> Dotnet >> Kestrel >> App 
+                <<     <<        <<         <<
+
+    Dependancy Injection ~ Essential
+        Dependancy Injection container manages the lifetime of objects. 
+        Register Dependancies prior to starting the app.... Create Instances later 
+
+    Middleware @ Pipieline _ Essential 
+        After creation, but before running
+        consists of method calls mostly begining with Use()
+            UseRouting();
+        Its a middleware package! 
+
+        for Routing, 
+        for Static Files, 
+        for Authorization, 
+        for Razor Pages, 
+
+        Requests go through Middleware in sequence.  1, 2, 3, complete. 
+
+
+Understanding Server-rendered Frontend Applications 
+
+
+
+
