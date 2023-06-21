@@ -1,0 +1,135 @@
+An Exception is 
+        Any error condition or unexpected behavior that is encountered by an executing program. 
+
+    Exceptions can be defined by 
+        System (.NET)
+            OutOfMemory
+            StackOverflow 
+        Third Party (libraries/frameworks)
+            JsonSeralization 
+        MyCode 
+            Rules 
+
+    Anything defined on the Exception can help understand what caused it 
+    & infer how to solve it.
+
+The Class Heirachy ~ 
+    Exception 
+        SystemException 
+            OutOfMemoryException
+            StackOverflowException
+            ArgumentException
+                ArgumentNullException
+                ArguemntOutOfRangeException
+        ArithmeticException
+            DivideByZeroException
+            OverflowException 
+        ApplicationException
+        Custom Exceptions 
+
+System.Exception Contains ~ 
+    Message 
+        <T> string 
+        Write it for the develop who is going to be handling the exception in the future 
+        Should completely describe the error 
+        Should describe how to correct the error, where applicable 
+        Could be shown to end user 
+        Could be logged 
+        Use Correct Grammar 
+        Dont include sensitive information/ PII
+
+    StackTrace 
+        <T> string 
+        Provides information about call stack 
+        Enables us to trace the method calls leading to the exception 
+
+    Data    
+        <T>IDictionary<<T>string, <T>object>
+        Key value pairs ~ Can contain anything. 
+        Can store number of items 
+        can store additional user defined exception data 
+        beware of key conflicts 
+
+    InnerException
+        <T> System.Exception 
+        Catch previous ex in this ex. 
+        refered to as exception wrapping 
+
+    Source
+        <T> string
+        Represents application/object name that caused the error 
+
+    HResult
+        <T> Int32 
+        represents a HRESUT numeric value 
+        often used with COM-interop code 
+
+    HelpLink
+        <T> string 
+        link to associated help file 
+        can be URL 
+        can be URN 
+
+    TargetSite 
+        <T> System.Reflection.MethodBase 
+        Gives us information about method that threw current exception; 
+
+System.Exception Constructors ~ 
+
+    public Exception() 
+        Default message 
+        null InnerException 
+
+    public(string message)
+        user defined message 
+
+    public(string message, Exception InnerException)
+        user defined message 
+        wrapped exception 
+
+Don't Throw & Catch ~ 
+
+    OR EVEN DERIVE ~ From <T> ApplicationException ~ At all! 
+
+    From <T> Exception 
+
+    From <T> SystemException
+
+Do Throw & Catch ~ 
+
+    <T> InvalidOperationException ~ (Base)
+        Use most specific derived child && Set ParamName property when throwing.
+            When the state of the object is invalid for another specifc method being called 
+            Throw when object is in appropreate state when a method is called. 
+
+        <T> ArgumentException 
+            Thrown when a method argument is invalid. 
+
+        <T> ArgumentNullException
+            Thrown when a null is passed to a method argument and it cannot accept nulls 
+
+        <T> ArguemntOutOfRangeException
+            Thrown whan method is outside of an allowable range. 
+
+    System Generated ~ Do not throw;   
+
+        <T> NullReferenceException 
+            Thrown when an attempt is made to dereference a null object reference 
+            tried to call string.Substring(null) ~ Cant call method on Null. 
+
+        <T> IndexOutOfRangeException 
+            Thrown when attempting to access an array/collection item that is out of bounds 
+            tried to access myArray[10] when myArray.Count == 5;
+
+        <T> StackOverflowException 
+            Thrown when too many nested method calls cause the execution stack to overflow 
+            In Windows stack is limited to 1MB ~ If we're causing a method call to take up that much memory, 
+            Something has gone drastically wrong. 
+            DO NOT CATCH
+
+        <T> OutOfMemoryException 
+            Thrown when there is not enough memory to continue executing the program 
+            If catching ~ Call Environment.FailFast 
+
+
+
