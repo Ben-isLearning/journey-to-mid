@@ -1,0 +1,64 @@
+Testing Thrown exceptions are as expected. 
+
+Testing with NUnit; 
+    New Project: ConsoleCalculator.Tests.NUnit
+
+        public class CalculatorShould 
+        {
+            [Test]
+            public void ThrowWhenUnsupportedOperation() 
+            {
+                var systemUnderTest = new Calculator(); 
+                
+                //Test that Calculate 1, 2, "+" throws the correct type of exception 
+                Assert.That(() => systemUnderTest.Calculate(1, 2, "+"), 
+                                    Throws.TypeOf<CalculateOperationNotSupportedException>()); 
+
+                //Test that Calculate 1, 2, "+" throws the correct type of exception, With the correct Value
+                Assert.That(() => systemUnderTest.Calculate(1, 1, "+"), 
+                                    Throws.TypeOf<CalculationOperationNotSupportedException>()
+                                    .With
+                                    .Property("Operation").EqualTo("+"));
+
+
+                //Tests that calculate 1, 1, "+" throws the correct type of exception & Creates a variable that we can assert against
+                var ex = Assert.Throws<CalculationOperationNotSupportedException>() => systemUnderTest.Calculate(1, 1, "+");
+
+                Assert.That(ex!.Operation, Is.EqualTo("+"));
+    
+
+            }
+        }
+
+Testing with xUnit; 
+    New Project: ConsoleCalculator.Tests.xUnit 
+
+    public class UnitTests 1 
+    {
+        [Fact]
+        public void ThrowWhenUnsupportedOperation() 
+        {
+            var systemUnderTest - new Calculator(); 
+
+            //Tests that correct Exception is thrown
+            Assert.Throws<CalculationOperationNotSupportedException>(
+                () => systemUnderTest.Calculate(1, 1, "+"));
+
+            //Tests that Exception derived from original is thrown
+            Assert.ThrowsAny<CalculationException>(
+                () => systemUnderTest.Calculate(1, 1, "+"));
+
+            //Tests that correct Exception is thrown & stores it as a variable to assert against
+            var ex = Assert.Throws<CalculationOperationNotSupportedException>(
+                () => systemUnderTest.Calculate(1, 1, "+"));
+
+            Assert.Equal("+", ex.Operation);
+        }
+    }
+
+
+
+
+
+
+

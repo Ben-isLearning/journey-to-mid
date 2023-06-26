@@ -1,0 +1,180 @@
+Custom Exceptions
+
+    Overview 
+        Use predefined .NET exceptions where available 
+            InvalidOperationException if propery set/method call is not appropriate 
+            ArgumentEception for invalid params 
+
+        Wrap inner exception in appropriate
+
+        Don't use custom exceptions for normal expected logic flow
+
+     When to Use 
+         Only create custom exceptons if they need to be caught and handled differently 
+             from the existing .NET exceptions. Don't recreate the wheel! 
+             Ex~ perform special monitoring of specific critical exception type 
+
+         Bulding a library/framework for use by other devs, so consumers can react 
+         specifically to errors in my library.
+
+         Interfacing with external API, DLL, service 
+             for wrapping, ex Wrapping error codes with Exceptions to be caught. 
+
+     Implementing 
+         Naming Convention: Ends in ...Exception 
+
+         Implement standard 3 constructors             
+
+         Add additional properties 
+
+         Never inherit from ApplicationException
+
+         Keep number of custom exceptions to a minimum
+     
+     Example: 
+        System.Exception >> JsonException >> JsonReaderException 
+                                          >> JsonSerializationException
+                                          >> JsonWriterException 
+                                          >> JsonSchemaException 
+
+    Defining Custom Exception; 
+
+        namespace ConsoleCalculator
+        {
+            public class CalculationException : Exception
+            {
+                private const string DefaultMessage = "An error occurred during calculation. Ensure that the operator is supported and that the values are within the valid ranges for the requested operation.";
+
+                /// <summary>
+                ///  Creates a new <see cref="CalculationException" /> with a predefined message.
+                /// </summary>
+                public CalculationException() : base(DefaultMessage) { }
+
+                /// <summary>
+                ///  Creates a new <see cref="CalculationException" /> with a user-supplied message.
+                /// </summary>
+                public CalculationException(string message) : base(message) { }
+
+                /// <summary>
+                ///  Creates a new <see cref="CalculationException" /> with
+                ///  a predefined message and a wrapped inner exception. 
+                /// </summary>
+                public CalculationException(Exception innerException) : base(DefaultMessage, innerException) { }
+
+                /// <summary>
+                ///  Creates a new <see cref="CalculationException" /> with
+                ///  a user-supplied message and a wrapped inner exception. 
+                /// </summary>
+                public CalculationException(string message, Exception innerException) : base(message, innerException) { }
+            }
+
+        }
+
+    Defining a Derived Custom Exception; 
+
+        public class CalculationOperationNotSupportedException : CalculationException
+        {
+            private const string DefaultMessage = "Specified operation was out of the range ov valid values.";
+
+            public string? Operation { get; }
+
+            /// <summary>
+            /// Creates a new <see cref="CalculationOperationNotSupportedException"./ with a predefined message.
+            /// </summary>
+            public CalculationOperationNotSupportedException() : base(DefaultMessage) { }
+
+            /// <summary>
+            /// Creates a new <see cref="CalculationOperationNotSupportedException"./ with a predefined message,
+            /// and a wrapped inner exception. 
+            /// </summary>
+            public CalculationOperationNotSupportedException(Exception innerException) : base(DefaultMessage, innerException) { }
+
+            /// <summary>
+            /// Creates a new <see cref="CalculationOperationNotSupportedException"./ with a user-defined message,
+            /// and a wrapped inner exception. 
+            /// </summary>
+            public CalculationOperationNotSupportedException(string message, Exception innerException) : base(message, innerException) { }
+
+            /// <summary>
+            /// Creates a new <see cref="CalculationOperationNotSupportedException"/> with the 
+            /// a default message and the operation that is not supported. 
+            /// </summary>
+            public CalculationOperationNotSupportedException(string operation) : this() => Operation = operation;
+
+            /// <summary>
+            /// Creates a new <see cref="CalculationOperationNotSupportedException"/> with the 
+            /// operation that is not supported and a user-supplied message.  
+            /// </summary>
+            public CalculationOperationNotSupportedException(string operation, string message) : base(message) => Operation = operation;
+
+            public override string Message
+            {
+                get
+                {
+                    if (Operation is null)
+                    {
+                        return base.Message;
+                    }
+                    return base.Message + Environment.NewLine + $"Unsupported operation: {Operation}";
+                }
+            }
+
+
+        }
+
+    Using Custom Exceptions; 
+        try
+        {
+            var calculator = new Calculator();
+            var result = calculator.Calculate(number1, number2, operation);
+
+            DisplayResult(result);
+        }
+        catch (ArgumentNullException ex) when (ex.ParamName == "operation")
+        {
+            //Exception Filter is more specific than unfiltered
+            ///Log.Error(ex);
+            WriteLine($"Operation was not provided. {ex}");
+        }
+        catch (ArgumentNullException ex)
+        {
+            //Log.Error(ex);
+            WriteLine($"An argument was null. {ex}");
+        }
+        catch (CalculationOperationNotSupportedException ex)
+        {
+            //Log.Error(ex);
+            WriteLine($"CalculationOperationNotSupportedException Caught {ex.Operation}");
+        }
+        catch (CalculationException ex)
+        {
+            //Log.Error(ex);
+            WriteLine($"CalculationException Caught");
+            WriteLine(ex);
+        }
+        catch (Exception ex)
+        {
+            WriteLine($"Sorry, something went wrong. {ex}");
+        }
+        finally
+        {
+            //Dispose here 
+            WriteLine($"Finally...");
+        }
+
+    An Alternative to Custom Exceptions ~ Data ~ Don't use this.; 
+
+        Data is a property of System.Exception 
+            <T> IDictionary (string, Object)
+            as a <ListDictionaryInternal> 
+            A List of Dictionary Items
+            Good for 10 items or less 
+            Used to store additional/supplementary user-defined exception information
+
+        Not Secure 
+        Any Catch block can Read additional keys/values
+        Any catch block can Change additional keys/values
+        Any catch block can Delete additional keys/values
+        Any catch block can add     additional keys/values
+
+        Be careful of key conflicts: 

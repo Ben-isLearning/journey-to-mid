@@ -16,17 +16,17 @@ public class Calculator
             {
                 return Divide(num1, num2);
             } 
-            catch (DivideByZeroException ex) 
+            catch (Exception ex) 
             {
                 Console.WriteLine("...Logging...");
                 //Log.Error(ex);
                 //throw; 
-                throw new ArithmeticException("An error occurred during calculation.", ex);
+                throw new CalculationException(ex);
             }
         }
         else
         {
-            throw new ArgumentOutOfRangeException(nameof(operation), "The mathematical operator is not supported.");
+            throw new CalculationOperationNotSupportedException(operation);
 
             //Console.WriteLine("Unknown Operation.");
             //return 0;
