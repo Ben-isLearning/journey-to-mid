@@ -27,8 +27,19 @@ Ben ~ 05/06/2023.
 
 Progress Tracker; 
 
-|          | Beginner | Intermediate | Advanced | Expert |
-|----------|----------|--------------|----------|--------|
-| C#       | 3 / 3    | 2            |          |        |
-| SpecFlow | 1 / 1    | 2 / 4        |          |        |
-|          |          |              |          |        |
+|                         | Beginner | Intermediate | Advanced | Expert | Time (Hrs) |
+|-------------------------|----------|--------------|----------|--------|------------|
+| C#                      | 3 / 3    | 2 / 14       | 0 / 6    |  0 / 2 |   96       |
+| SpecFlow                | 1 / 1    | 1 / 4        |          |        |   76       |
+| ASP.Net Core 6          | 1 / 2    | 0 / 10       | 0 / 10   |        |   5        |
+| T-SQL                   | 0 / 2    | 0 / 3        | 0 / 2    |        |   19       |
+| XUnit                   | 0 / 3    | 0 / 2        | 0 / 2    |        |   13       |
+| ASP.Net Core 6 Web API  | 1 / 2    | 0 / 10       | 0 / 3    | 0 / 1  |   64       |
+| Design Patterns         | 0 / 15   | 0 / 3        | 0 / 6    |        |   15       |
+| ASP.NET Core 6 Blazor   | 1 / 2    | 0 / 4        |          |        |   14       |
+| TypeScript              | 0 / 2    | 0 / 8        |          |        |   16       |
+| Jest                    | 0 / 1    |              |          |        |   2        |
+| React 17                | 0 / 3    | 0 / 17       |          |        |   38       |
+| Testing React           | 0 / 1    |              |          |        |   2        |
+| Redux & Flux            | 0 / 1    |              |          |        |   3        |
+| NoSQL                   | 0 / 2    |              |          |        |   3        |
