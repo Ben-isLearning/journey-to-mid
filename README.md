@@ -29,7 +29,7 @@ Progress Tracker;
 
 |                         | Beginner | Intermediate | Advanced | Expert | Time (Hrs) |
 |-------------------------|----------|--------------|----------|--------|------------|
-| C#                      | <span style="color:blue;">3 / 3</span>    | 2 / 14       | 0 / 6    |  0 / 2 |   96       |
+| C#                      | <span style="color:green">3 / 3</span>    | 2 / 14       | 0 / 6    |  0 / 2 |   96       |
 | SpecFlow                | 1 / 1    | 1 / 4        |          |        |   76       |
 | ASP.Net Core 6          | 1 / 2    | 0 / 10       | 0 / 10   |        |   5        |
 | T-SQL                   | 0 / 2    | 0 / 3        | 0 / 2    |        |   19       |
