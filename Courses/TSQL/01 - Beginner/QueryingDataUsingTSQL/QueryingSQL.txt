@@ -1,1 +1,56 @@
-x
+What is TSQL? 
+
+    What is TSQL? 
+        SQL  ~ Structured Query Language  
+        TSQL ~ Transactional Structured Query Language (Used By Microsoft SQLServer and Psybase)
+
+        MS SQLServer is an RDBMS
+            Relational DataBase Management System 
+
+        Based on Relational Model. 
+
+    SQL Server Architecture
+
+        SQL Server lives in its own little bubble 
+            Can only be communicated with TCPIP. 
+
+        SQL Server offers 2 types of Authentication 
+            SQL credentials 
+            or Windows Authentication (With Active directory)
+            
+        SQL Server Object Heirachy 
+            Operating System 
+                SQL Server Default Instance
+                    Database 1 
+                        Schema 1 
+                            Table 
+                            View 
+                            Stored Procedure
+                            Etc 
+                        Schema 2 
+                        Schema 3 
+                    Database 2
+                    Database 3 
+
+                SQL Server Instance 1 
+                SQL Server Instance 2 
+
+        Naming ~ Each item has a name consisting of 4 parts ~ Instance.Database.Schema.Object 
+            We can Omit names and it will pick up defaults
+
+    SSMS 
+        New Query ~ CTRL + N 
+
+        Create Database ~ 
+            CREATE DATABASE NewDB;  
+
+
+
+
+
+
+
+
+
+
+
