@@ -29,8 +29,8 @@ Progress Tracker;
 
 |                         | Beginner | Intermediate | Advanced | Expert | Time (Hrs) |
 |-------------------------|----------|--------------|----------|--------|------------|
-| C#                      | $\textcolor{green}{\textsf{ 3 / 3}}$   | 2 / 14       | 0 / 6    |  0 / 2 |   96       |
-| SpecFlow                | 1 / 1    | 1 / 4        |          |        |   76       |
+| C#                      |  $\textcolor{green}{\textsf{3 / 3}}$   | 2 / 14       | 0 / 6    |  0 / 2 |   96       |
+| SpecFlow                |  $\textcolor{green}{\textsf{1 / 1}}$   | 1 / 4        |          |        |   76       |
 | ASP.Net Core 6          | 1 / 2    | 0 / 10       | 0 / 10   |        |   5        |
 | T-SQL                   | 0 / 2    | 0 / 3        | 0 / 2    |        |   19       |
 | XUnit                   | 0 / 3    | 0 / 2        | 0 / 2    |        |   13       |
