@@ -23,3 +23,10 @@ I'll document my journey to Git Gud as a programmer (developer?),
   Foreword;  To any budding developers or Juniors suffering from Imposter Syndrome & Technical Anxiety, you're not alone! 
  
 Ben ~ 05/06/2023.
+
+
+|          | Beginner | Intermediate | Advanced | Expert |
+|----------|----------|--------------|----------|--------|
+| C#       | 3 / 3    | 0            |          |        |
+| SpecFlow | 1 / 1    | 1 / 4        |          |        |
+|          |          |              |          |        |
