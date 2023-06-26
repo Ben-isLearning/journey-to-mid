@@ -25,8 +25,10 @@ I'll document my journey to Git Gud as a programmer (developer?),
 Ben ~ 05/06/2023.
 
 
+Progress Tracker; 
+
 |          | Beginner | Intermediate | Advanced | Expert |
 |----------|----------|--------------|----------|--------|
-| C#       | 3 / 3    | 0            |          |        |
-| SpecFlow | 1 / 1    | 1 / 4        |          |        |
+| C#       | 3 / 3    | 2            |          |        |
+| SpecFlow | 1 / 1    | 2 / 4        |          |        |
 |          |          |              |          |        |
