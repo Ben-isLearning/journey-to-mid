@@ -1,0 +1,85 @@
+NULL ~ The problem child of SQL. 
+    Represents missing or inapplicable data. 
+
+SQL 3VL Predicate
+    True | False | Unknown 
+
+    Any comparison of 2 unknowns is unknown. 
+    Any comparison of Known to Unknown is unknown. 
+    State predicate can only evaluate to true or false 
+
+Logical Operators 
+    ALL 
+        X > ALL (A, B, C)           True when X > A && X > B && X > C. 
+                                    If A||B||C is NULL, Result is Unknown.
+
+    ANY/SOME 
+        X > ANY | SOME (A, B, C)    True when X > A || X > B || X > C.  (?? || True == True)    (?? || False == False) 
+                                    If A||B||C is NULL, Result is True or Unknown.
+    
+    IN
+        X IN (A, B, C)              True when X = A || X = B || X = C. 
+
+    NOT IN 
+        X NOT IN (A, B, C)          True when X != A && X != B && X != C. 
+                                        If A||B||C is NULL, Result is Unknown.
+
+    BETWEEN 
+        X Between A and B           True when X >= A AND X <= B 
+                                        BOUNDARY VALUES ARE INCLUDED TOO 
+
+    LIKE
+        X LIKE (<pattern)           True when X matches wildcard pattern Always use brackets. 
+                                        ((x > 5 AND Y IN (7, 9, 11)) OR (X = 4 AND Y Between 3 AND 6)) AND (Z Like 'AB%')
+
+    EXISTS
+        X == NULL ~ Returns ?? 
+        X != NULL ~ Returns ?? 
+
+        X IS NULL ~             True if X is null,  False if not,   Never unknown.
+        X IS NOT NULL ~         False if X is null, True if not,    Never unknown. 
+
+Filtering with WHERE 
+    Row by Row evaluation 
+    by 1 or more Predicates 
+
+        WHERE Country = 'USA' 
+
+        Customer    Country     Country = 'USA' 
+        Jack        USA         True 
+        Sunil       India       False 
+        Kelly       USA         True 
+        Chen        China       False 
+        Bob         NULL        Unknown
+
+        Only TRUE rows are kept for further processing.. 
+
+        Customer    Country     Country = 'USA' 
+        Jack        USA         True 
+        Kelly       USA         True 
+
+DEMO: 
+
+    SELECT * 
+    FROM Customers 
+    WHERE Country IS NOT NULL; 
+
+    SELECT * 
+    FROM ORDERS 
+    WHERE OrderDate BETWEEN '20230115' AND '20230130'   ~ Show orders with date between 15th & 30th
+
+    SELECT * 
+    FROM Items  
+    WHERE Item IN ('Turntable', 'Amplifier');           ~ Show items listed 
+
+    SELECT * 
+    FROM Items  
+    WHERE Item NOT IN ('Turntable', 'Amplifier');       ~ Show everything BUT items listed 
+
+    SELECT * 
+    FROM Items  
+    WHERE Item IN ('%A');                               ~ Starts with A 
+
+    SELECT * 
+    FROM Items  
+    WHERE Item IN ('%n%');                              ~ Contains n   

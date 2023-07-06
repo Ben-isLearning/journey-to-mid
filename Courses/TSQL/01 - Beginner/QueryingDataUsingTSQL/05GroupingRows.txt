@@ -1,0 +1,46 @@
+Tables store Granular Data about real world entities 
+    Orders stores order details 
+    Customers stores customer details 
+    Items stores item details
+
+    But no complex data so far. 
+
+What is grouping good for? 
+    Finding simple answers to intricate questions in our data. 
+
+Grouping Rows 
+
+    GROUP BY Country 
+        Customer    Country     Group
+        Jack        USA         1
+        Kelly       USA         1
+        Sunil       India       2
+        Chen        China       3
+        Bob         NULL        4
+
+            Aggregate functions operate on a set of elements 
+            & return a single value. 
+                Ex: Minimum, Maximum, Average, Count 
+
+    SELECT  Country, Count(*) AS NumberOfCustomers 
+    FROM    Customers 
+    WHERE   Country IS NOT NULL     << Only has access to individual Rows 
+    GROUP BY Country;  
+
+        Country     NumberOfCustomers;
+        USA         2
+        India       1
+        China       1
+        NULL        1
+
+
+    HAVING Count(*) > 1
+
+    SELECT  Country, Count(*) AS NumberOfCustomers 
+    FROM    Customers 
+    WHERE   Country IS NOT NULL     << Only has access to individual Rows 
+    GROUP BY Country
+    Having Count(*) > 1;            << Has Access to aggregated rows. 
+
+        Country     NumberOfCustomers;
+        USA         2

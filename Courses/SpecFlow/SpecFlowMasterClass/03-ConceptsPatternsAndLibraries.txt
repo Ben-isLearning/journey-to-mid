@@ -1,0 +1,345 @@
+01 - 1 Minute BDD Summary; 
+    BDD is the bridge between Requirements and Application
+        SpecFlow validates Requirements 
+        Specflow verifies Application
+
+    Discovery 
+        Trying to understand requirements 
+        Illustrate with examples of behaviour 
+    
+    Formulation 
+        Documenting examples as scenarios 
+
+02 - SpecFlow core concepts 
+    What is the core concept of SpecFlow? 
+        It is executing scenarios in a plaintext format, and turning them into executable tests 
+        SpecFlow uses test execution (xUnit / Nunit) to actually run the tests
+        Add the relevant NuGet package to get relevant test execution framework
+
+    Project Folders 
+        Features
+            >Feature files live here  
+        StepDefinitions
+            >Automation files live here 
+        Support 
+            >Misc / Supporting infastructure lives here 
+
+    Step Definition 
+        SpecFlow needs to be told how to execute the plaintext commands from the .feature files 
+        
+        Ex (feature):           Scenario: the logged-in user name is shown on the home page  
+                                    Given the user is authenticated 
+
+        Ex (StepDefinition);    [Given("the user is authenticated")]
+                                public void GivenTheUserIsAuthenticated() 
+                                {
+                                    _authContent.Authenticate(DomainDefaults.UserName, DomainDefaults.UserPassword);
+                                }
+     
+        [Given("there are {int} questions asked")]      << Set Param            < These types are only suggestions from SpecFlow 
+        [Given("there are (.*) questions asked")]       << Wildcard Param       < These types are only suggestions from SpecFlow 
+        public void GivenThereAreQuestionsAsked(int count)
+        {
+            //DoStuff
+        }
+
+        Step Definitions are Global. 
+            Step Definitions are able to be used in all feature files! 
+            Don't worry too much about it. 
+
+        Step Definitions needs to be bound with the [Binding] attribute 
+
+        Unimplemented Step Definitions are shown in a different color. 
+        Unimplemented Step Definitions can be added with rightclick > generate steps 
+
+    Regular Vs Cucumber Expressions 
+        Which step connects to which definition?
+
+        With Regex:     [Then(@"the home page main message should be: ""([^""]*)""")]       < Wtf? 
+        With Cucumber:  [Then("the home page main message shouls be: {string}")]
+
+    Data Tables 
+        A special type of parameter, for a particular step. ~ Basically a list of dictionaries 
+
+        Feature:            Given there is a question just asked as 
+                                | title                              | votes | answers | views | asked by |
+                                | How to write better BDD scenarios? | 0     | 0       | 1     | Ford     |
+
+        StepDefinition:     [Given("there are questions asked as")]
+                            [Given("there is a questions asked as")]
+                            public void GivenThereIsAQuestionAskedAs(Table questionsTable) { //DoStuff }
+
+        There are no parameters to be seen on the automation side, however, the method still accepts a table 
+        Can use helper method to derive each row in the table ~ See 03-Table.png  Also see 03-TableHelper.png 
+
+
+        Feature:            Then the answer list should be shown as 
+                                | content                             |
+                                | Check the SpecFlow Masterclass book |
+                                | Check the Formulaition book         |
+
+        Assert against the generated Table 
+        StepDefinition:    [Then("the answer list should be shown as")]
+                           public void ThenTheAnswerListShouldBeShownAs(Table expectedAnswerListTable) { //DoStuff }    
+
+        There are no parameters to be seen on the automation side, however the method still accepts a table. 
+        Can use helper method to derive each row in the table AND another helper method to compare the entire set of data
+        ~ See 03-TableAssertionHelper 
+
+        Check out CreateSet, CreateInstance to form a table 
+        Check out CompareToSet, CompareToInstance to compare a table with object(s)
+
+    Hooks 
+        Methods that are calling before or after every single scenario
+        Used to add automation logic before or after a scenario.
+
+        Hooks live in the support folder, 
+            Hooks end with Hooks.cs 
+            Ex: mySillyHooks.cs
+
+            [Binding]
+            public class myHooks 
+            {
+                [BeforeScenario()]                      << Hey SpecFlow, please run this before every single scenario
+                public void One()
+                {
+                    Console.WriteLine("one");
+                }
+                
+                [AfterScenario()]                      << Hey SpecFlow, please run this after every single scenario
+                public void Two()
+                {
+                    Console.WriteLine("Two");
+                }
+
+
+                [BeforeScenario("foo")]                 << Hey SpecFlow, please run this before every single scenario with the @foo Tag! 
+                public void Three()
+                {
+                    Console.WriteLine("Only for foo!");
+                }
+            }
+
+03 - State Sharing, content injection and the SpecFlow object activation model 
+
+    Share Data between two or more methods in the same class ~ Use a private field 
+        Simple, Clean, Propper & safe way to acheive this! 
+
+    In this manner, each step definition will get initialize a brand new model, that is thrown away after use
+    *Safe for Parallel running 
+
+
+    Sharing data between two or more methods across classes ~ Use Context Injection 
+
+        Scenatio: the logged-in user name is shown on the home page 
+            Given the user is authenticated                                     << Lives in AuthStepDefinitons.cs 
+            When the user checks the home page                                  << Lives in HomeStepDefintions.cs
+            Then the user name of the user should be shown on the home page 
+
+    Context Injection Part 1;   
+        Set private fields from params provided in the constructor 
+        the private fields will be created 
+        & Set value to be accessed later 
+
+    Context Injection Part 2; 
+        Set private fields from params provided in the constructor 
+            the private fields here will recognise that a class exists already (created in part 1)
+            and use the already generated values 
+            & access the values saved earlier 
+        
+    Context Injection Part 3;
+        Context injection can be used to share automation logic!
+        ex, useful logging helper methods to debug tests better
+            Just list it in the constructor of the StepDefinition, create a private field & away you go! 
+    
+04 - Automate at different layers 
+    Automation can be acheived at different layers;
+        UI                  - verifies what the user sees (Slow, Brittle and Costly)
+        Front/Backend       - Generic, but does not test UI 
+        Service Interface   - Service specific, but faster 
+        Application Domain  - Calling methods on domain classes - Fastest, but needs access to the code
+    
+    Layering: Web API 
+        Test Runner & SpecFlow >>>      TESTING     >>> System Under Test  
+
+            [Given(@"the client is logged in")]
+            public void GivenTheClientIsLoggedIn() 
+            {
+                //start application
+                _webApplicationFactory = new WebApplicationFactory<Startup>(); 
+
+                //Create HTTP Client 
+                _heepClient = _webApplicationFactory.CreateClient(); 
+
+                //Prepare JSON payload data 
+                var data = new LoginInputModel {Name = "Marvin", Password = "1234"}; 
+
+                //Execute request 
+                var content = new StringContent(JsonConverter.SerializeObject(data), Encoding)
+                var response = _httpClient.PostAsync("/api/auth", content).Result; 
+
+                //Sanity check
+                Assert.True((int)response.StatusCode >= 200 && (int)response.StatusCode <=)  ??
+
+                // functional check 
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        
+        Test Runner & SpecFlow >>>      TESTING         >>>     Infrastructure     >>> System Under Test  
+                                    (StepDefinition)            (WebApiContext)
+        Improvement 01 - Introduce Infrastructure layer of code. 
+            enforce a seperation of concerns - Take out all infastructural things 
+                remove initialisation and teardown 
+                remove Requests
+
+            
+            _httpClient now lives in its own helper class~  Support/WebApiContext.cs
+            Making HTTP requests is now handled within WebApiContext.cs too 
+            Making Sanity checks are also handled within WebApiContext.cs as well. 
+            WebApiContext is now served through Dependancy Injeciton 
+
+            public WebApiStepDefinitions(WebApiContext webApiContext)
+            {
+                _webApiContext = webApiContext 
+            }
+
+            [Given(@"the client is logged in")]
+            public void GivenTheClientIsLoggedIn() 
+            {
+
+                //Prepare JSON payload data 
+                var data = new LoginInputModel {Name = "Marvin", Password = "1234"}; 
+
+                //Execute request 
+                var statusCode = _webApiContext.ExeutePost("api/auth", data);
+
+                // functional check 
+                Assert.Equal(HttpStatusCode.OK, statusCode);
+            }
+
+        Test Runner & SpecFlow >>>      TESTING         >>>     Automation  >>>    Infrastructure     >>> System Under Test  
+                                        (StepDefinition)        (Driver)           (WebApiContext)
+        Improvement 02 - Introduce Automation layer between StepDefinition & WebApiContext
+            Naming convention isn't concrete yet ~ Helper, Adapter, Driver, Page Object etc? 
+            Gaspar Likes "Driver" ~ This is the class that knows how to drive this interface ~ Actual pattern is Page Object patten? 
+            
+            The driver focuses only on automation ~ no testing descisions are made in here. 
+                Shouldn't asser in drivers, but 
+                    Sanity checks are good 
+                    Assertion helper methods are allowed if they're being called from the testing later.
+
+            Here we should seperate the testing code, from the automation code. 
+                All HTTP client / REST API actions / preparations / functional checking is performed 
+                by the automated drivers 
+                Ex: _authApiDriver & _homeApiDriver 
+
+                    [Given(@"the client is logged in")]
+                    public void GivenTheClientIsLoggedIn() 
+                    {
+                        _authApiDriver.Login.Perform(new LoginInputModel {Name = "Marvin", Password = "1234"})
+                    }
+
+                    [Then("the login attempt should be successful")]
+                    public void ThenTheLoginAttemptShouldBeSuccessful()
+                    {
+                        _authApiDriver.LogIn.ShouldBeSuccessful(); 
+                    }
+
+                    [When(@"the client checks the home page")]
+                    public void WhenTheClientChekcsTheHomePage()
+                    {
+                        _homePageModel = _homeApiDriver.GetHomePageModel(); 
+                    }
+                    
+        Layering for Web API handles; 
+            Infrastructure Layer Handles ~ 
+                Starting 
+                Stopping 
+                Singleton for the test run 
+                HTTP Calls, 
+                Cookie Management
+                JSON Serialization  
+                Sanity Checks 
+                Logging 
+
+            Automation Layer handles ~ 
+                Automating specific endpoints of the application (/api/user,  /api/auth )
+                Uses "input" and "model" classes on the interface 
+
+    Layering: Web UI ~ Seems incredibly brittle 
+        Strinking difference here, the Automation Driver classes become PageObjects 
+
+            The page Object knows how to; 
+                access specific sections of the HTML by Id using FindElement()
+                navigate to different web pages on the 
+                return the data rendered in a page as a C# model object
+                parse data from web pages 
+                perform actions
+
+            All of this works well using Ajax 
+                Concept is that Preload the "data-ajax-loaded" attribute is set to 0 
+                and after the ajax data has loaded, the attribute is set to 1. 
+                Then the automated navigation waits for the attribute to be 1 rather than 0  
+            
+        Can perform Automated testing in unique browsers...
+            Per test; 
+                initiateBrowserAs = scenarioContext.ScenarioContainer.Resolve<TestThreadContext>.TestThreadContainer
+
+            Per feature  
+                initiateBrowserAs = scenarioContext.ScenarioContainer.Resolve<FeatureContext>.FeatureContainer
+
+            Per scenario 
+                initiateBrowserAs = scenarioContext.ScenarioContainer
+
+        Layering for Web UI handles; 
+            infastructure Layer handles ~ 
+                Starting    (Seperate broser for each parallel thread)
+                Stopping    (Seperate broser for each parallel thread)
+                Handles Base URL 
+                Handles waiting problems 
+            
+            Automation Layer handles ~ 
+                using Page Object Pattern 
+                Use Input and Model classes on the interfase (ex parse methods)
+
+05 - Feedback from tests 
+    Providing useful diagnoisting information about failures is critical for BDD scenarios 
+    
+    Test the tests: 
+        never trust test that pass immediately 
+        Do exploratory testing to verify your tests (trying with wrong expectations, inject bugs etc)
+
+    Use [AfterScenario] to save log files, screenshots etc 
+
+06 - Assorted automation patterns and practices 
+    Identify Automation patterns and Practices within the Sample Code. 
+
+    01 - Current Object Pattern             ~ Manages "the one thing" the scenario talks about (Ex the question)
+        QuestionContext class 
+
+    02 - Driver Pattern                     ~ Encapsulates the automation concerns of a specific area 
+        Driver Classes 
+
+    03 - Data Mothers                       ~ Drivers that are able to generate test data 
+        QuestionMother class  
+
+    04 - Attempt Action Pattern             ~ Enables asserting on action errors 
+        ActionAttempt Class     
+
+    05 - Data classes                       ~ converts or compare them with data tables 
+        *Data classes in Support folder 
+
+    06 - Domain Defaults Collection Class   ~ collects all default values/behaviour in one place 
+        DomainDefaults Class 
+
+    07 - Authentication Context             ~ manages authentication session (can also be used for multiple parallel user sessions)
+        AuthContext class, Scenario: Multiple user can vote for the same question 
+
+    08 - Data reset patterns                ~ resets the database to a baseline before the tests run 
+        DatabaseHooks class 
+    
+    09 - Asserting Error messages           ~ Allows you to assert on the message key, that is replaced by the real message text for the comparison 
+        ErrorMessageProvider class (concept only)
+
+    10 - Test Logger                        ~ Encapsulates generation of test logs 
+        TestLogger class (concept only)

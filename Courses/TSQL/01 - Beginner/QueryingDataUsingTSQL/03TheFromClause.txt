@@ -1,0 +1,55 @@
+Step 1, Create a Cartesian Product 
+
+    1 CROSS JOIN 2 
+    A           B 
+    B           E 
+    C 
+                    == AB AE, BB, BE, CB, CE. 
+
+Step 2, Matching Rows, Begins with a  Cartesian Product 
+    Requires a Join Predicate 
+
+    1 INNER JOIN 2 
+    ON 
+    1.Value == 2.Value 
+                    ==  BB 
+
+
+Step 3, Adding reversed Rows (the unmatched pairs get a Null to make them a "match")
+
+    1 LEFT OUTER JOIN 2 
+    on 
+    1.Value == 2.Value 
+                    ==  A0 BB C0 
+
+Demo ~ 
+
+    SELECT * 
+    From Orders; 
+        OrderId OrderDate   Customer
+        1       2020-02-12  Jack    
+        2       2020-02-14  Bob
+        3       2020-02-15  Jack
+        4       2020-02-18  Chen            ~ Good 
+
+    SELECT *
+    FROM    Customers 
+            CROSS JOIN
+            Orders;     
+        Customer    Country OrderId OrderDate   Customer
+        Bob         Null    1       2020-02-12  Jack    
+        Chen        China   2       2020-02-14  Jack
+        Jack        USA     3       2020-02-15  Jack
+        Jane        Null    4       2020-02-18  Jack        ~ Trash 
+
+    SELECT *
+    FROM    Customers as C
+            INNER JOIN 
+            Orders as O 
+            ON C.Customer = O.Customer;     ~ Show us only 
+        Customer    Country | OrderId OrderDate   Customer
+        Jack        USA     | 1       2020-02-12  Jack    
+        Bob         NULL    | 2       2020-02-14  Bob
+        Jack        USA     | 3       2020-02-15  Jack
+        Chen        China   | 4       2020-02-18  Chen         ~ Good ~ Customer Data next to Order Data 
+

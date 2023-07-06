@@ -1,0 +1,69 @@
+Our First SELECT 
+
+    What is an SQL Query?
+        A sentence full of Clauses. 
+            Clauses are verbs. 
+
+        VERB                -   Order       -       Description 
+
+        SELECT              -   5           -       List of all data after predecates and expressions 
+        FROM                -   1           -       Defines the source data set
+        WHERE               -   2           -       Filters Rows with a predecate 
+        GROUP BY            -   3           -       Combines rows into groups based on expressions 
+        HAVING              -   4           -       Filters Groups with a predecate 
+        ORDER BY            -   6           -       Presentation order 
+        OFFSET - FETCH      -   7           -       Limit amount of returned items 
+
+    Terminology
+        A set               - a collection of unique elements.
+                              has no order 
+                              Rows are unique & Have no order 
+
+        Alias               - the assigned name of a whole dataset or expression 
+                                by default, is the objects name. 
+                                (first name + last name) as fullname
+
+        Strongly Typed      -   Numeric 
+                                Strings 
+                                Binary 
+                                Temporal 
+
+        Special Types       -   Heirachy 
+                                Spatial 
+                                Document        
+
+        Missing DataTypes   -   Interval 
+                                Boolean              
+
+
+        Operators           -   Arithmetic 
+                                String
+                                Date & Time 
+                                Bitwise 
+                                Comparison 
+                                Logical 
+
+    DEMO: 
+        Use NewDB; 
+
+            SELECT 1234 
+            
+            SELECT 'X';     ~ Returned as a String 
+
+            SELECT 2 * 7, SQRT(2) ~ Returned as 2 unnamed columns
+
+            SELECT 2 * 7 AS Easy, SQRT(2) AS LessEasy ~ Returned as 2 columns with Aliases. 
+
+            SELECT 7 / 2; ~ Will break 
+                            
+                            decimal(precision, scale)
+            SELECT CAST(7 AS DECIMAL(5,2)) /2;          ~ is fine 
+
+            SELECT CAST('20230121' AS DATE) AS JanFirst; ~ returns Aliased column "JanFirst" with date 2023-01-21
+            Always use YYYY-MM-DD 
+
+
+
+
+
+
